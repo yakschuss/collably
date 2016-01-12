@@ -1,0 +1,107 @@
+
+
+      # Planning
+          -Answer Questions
+          -User Stories
+          -Model our Data
+          -Think through the pages for app
+
+
+      ## Questions
+
+        1. What are we building?
+        2. Who are we building it for?
+
+
+        1. An event-planning application for collaboration between party-hosts.
+         A place for co-hosts and organizers to virtually meet with all pertinent information present.
+
+        2. Party Organizers, and their co-hosts and helpers.
+
+        - Location should connect to Google Maps API
+
+      ## User Stories
+
+        - As a User, I want to be able to sign up and create an account with my contact information, so that I can be found.
+            -devise?
+
+        - As an Authorized User, I want to be able to sign in and out, so I can access and see all the events that I am a part of.
+            -devise?
+
+        - As an Authorized User - I want to be able to create new events, so that I can be the administrator, and assign additional administrators of the event.
+            -roles, user permissions? (allowing users to assign other users to their data by invite?)
+
+        - As an Authorized Admin - I want to be able to invite others to my created events.
+            user permissions? (allowing users to assign other users to their data by invite?)
+
+        - As an Authorized User - I want to be able to join events that I'm invited to by selecting from a list of events I'm approved for,
+
+        - As an Authorized User that's confirmed for an event, I want to be able to suggest other users to be invited, via their contact information (or email address if they don't have an account yet.)
+
+        - As an Authorized Admin, I want to be able to approve or ignore suggestions for collaborators.
+
+        - As an Authorized Admin - I want to be able to set attributes for the event, such as Location, Necessary Items, and Other things the event will need so that users can obtain information for themselves.
+            Google Maps API, CSV Import
+        - As an Authorized User, I want to be able to select from a list of Necessary Items for the party that I will take responsibility for.
+            CSV Import, to dropdown menu
+        - As an Authorized User or Admin, I want to be able to contribute to the message board of the event page.
+
+        - As an Authorized User, I want to be able to check my inbox for event invites.
+
+        - As an Authorized User or Admin, I want to be able to perform CRUD with the event's todo list on the event page.
+
+        - As an Authorized Admin, I want to be able to close or complete an event, so that it will be taken off my event lists.
+
+        - As an Authorized User, I want to receive notifications for updates to my events, so that I can stay updated on changes.
+
+        - As an Authorized User, I want to be able to peruse old events, and save information from an event, so that I can use that info in planning future events.
+
+        - As an Authorized User, I want to be able to send Private Messages, or post them to an event board, so that they can be seen by all event collaborators.
+
+
+
+        ###
+
+        **Event**
+        has_many :items, :users, :messages
+            -users
+            -items
+            -location
+
+
+        **Item**
+        belongs_to :event
+        belongs_to :user
+            -event
+            -user
+
+
+        **User**  (Roles - Admin, Collaborator)
+        has_many :events, :messages
+            -first_name
+            -last_name
+            -email
+            -password
+            -events
+
+        **Message**
+        belongs_to :user, :event
+            -from
+            -body
+            -created_at
+            -sent_at
+            -public
+            -event
+
+
+      #### Pages
+
+      -Welcome Page (welcome#index)
+      -Sign In (session#new)
+      -Sign Up (registration#new)
+      -Dashboard (user#show)
+      -Event Page (event#show)
+      -Inbox (message#index)
+      -Create Event (event#new)
+      -Edit Event (event#edit)
+      -Select Event ()??
