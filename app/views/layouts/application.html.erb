@@ -1,16 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Collably</title>
+  <title>Blocitoff</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+
 </head>
-<body>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+    <body>
+      <header class="navbar navbar-fixed-top navbar-inverse navbar-custom">
+        <div class="container">
+          <div class="nav-title">
+          <% if user_signed_in? %>
+            Signed in as: <strong><%= current_user.email %></strong>
+          </div>
+          <nav>
+          <ul class="nav navbar-nav navbar-right">
+            <li><%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %></li>
+            <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></li>
+          </ul>
+            <% else %>
+          <ul class="nav navbar-nav navbar-right">
+            <li><%= link_to "Sign Up", new_user_registration_path, :class => 'navbar-link'  %></li>
+            <li><%= link_to "Sign In", new_user_session_path, :class => 'navbar-link'  %></li>
+          </ul>
+        </nav>
+          <p class="notice"><%= notice %></p>
+          <p class="alert"><%= alert %></p>
+        <% end %>
+        </div>
+      </header>
+      <div class="container">
+          <%= yield %>
+      </div>
+    </body>
 
-<%= yield %>
-
-</body>
-</html>
+    </html>
