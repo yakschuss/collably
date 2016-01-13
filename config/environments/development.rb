@@ -40,4 +40,15 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+  :user_name => '52760ce832edac3e6',
+  :password => '409a626e784248',
+  :address => 'mailtrap.io',
+  :domain => 'mailtrap.io',
+  :port => '2525',
+  :authentication => :cram_md5
+}
 end
