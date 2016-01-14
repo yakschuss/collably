@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe EventsController, type: :controller do
   let(:my_event) {create(:event)}
-  let(:my_user) {create(:user)}
+  let(:my_user) {create(:user, confirmed_at: Time.now)}
 
   context "guest" do
     describe "GET show" do
@@ -33,7 +33,7 @@ RSpec.describe EventsController, type: :controller do
 
   context "authorized user doing CRUD on an event they own" do
     before do
-      sign_in user
+      sign_in my_user
     end
 
     describe "GET show" do
@@ -85,6 +85,8 @@ RSpec.describe EventsController, type: :controller do
         expect(response).to redirect_to #event path - TBD
       end
     end
+  end
+
 =begin
     describe "GET edit" do
       it "returns http success" do
