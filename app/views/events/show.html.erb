@@ -1,2 +1,14 @@
-<h1>Events#show</h1>
-<p>Find me in app/views/events/show.html.erb</p>
+<div>
+  <h1>
+    <%= @event.title %><br>
+    <small>
+      submitted <%= time_ago_in_words(@event.created_at) %> ago by <%= @event.user.first_name %>
+    </small>
+  </h1>
+</div>
+
+    <% if user_is_authorized_for_event?(@event) %>
+    <div class="col-md-4">
+      <p>You're allowed to be here!</p>
+    </div>
+    <% end %>
