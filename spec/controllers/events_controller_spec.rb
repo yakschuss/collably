@@ -31,13 +31,13 @@ RSpec.describe EventsController, type: :controller do
   end
 
 
-  context "authorized user doing CRUD on an event they own" do
+  context "authorized user working with own event" do
     before do
       sign_in my_user
     end
 
-    describe "GET show" do
-      it "returns http success" do
+    describe "view" do
+      it "succeeds" do
         get :show, event_id: my_event.id
         expect(response).to have_http_status(:success)
       end
