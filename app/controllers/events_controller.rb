@@ -7,11 +7,13 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = current_user.events.build(event_params)
+    @event = current_user.events.create(event_params)
+    @eventuserrole =  EventUserRole.new(user: current_user, event: @event, role: 1)
       logger.debug "Event should be valid: #{@event.valid?}"
+      logger.debug "EventUserRole should be valid: #{@eventuserrole.valid?}"
 
       if @event.save
-        flash[:notice] = "event was created"
+        flash[:notice] = "Your Event was created"
         redirect_to @event
       else
         flash[:error] = "Error saving event, please try again"

@@ -2,7 +2,7 @@
   <h1>
     <%= @event.title %><br>
     <small>
-      submitted <%= time_ago_in_words(@event.created_at) %> ago by not sure how to access users!
+      submitted <%= time_ago_in_words(@event.created_at) %> ago by <%= @event.users.first.first_name %>
     </small>
   </h1>
 </div>

@@ -55,7 +55,7 @@ RSpec.describe EventsController, type: :controller do
 
     describe "GET new" do
       it "returns http success" do
-        get :new, event_id: my_event.id
+        get :new
         expect(response).to have_http_status(:success)
       end
 

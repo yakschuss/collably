@@ -1,12 +1,12 @@
 class EventUserRole < ActiveRecord::Base
   belongs_to :user
   belongs_to :event
-  after_create :assign_user_role
+  before_save :assign_user_role
 
   enum role: [:member, :admin]
 
-#  private
-#  def assign_user_role
-#   before_save { self.role ||= :member }
-#  end
+  private
+    def assign_user_role
+      self.role ||= :member 
+    end
 end
