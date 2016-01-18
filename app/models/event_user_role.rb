@@ -7,6 +7,6 @@ class EventUserRole < ActiveRecord::Base
 
 #  private
 #  def assign_user_role
-
+#   before_save { self.role ||= :member }
 #  end
 end

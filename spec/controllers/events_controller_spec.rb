@@ -76,13 +76,13 @@ RSpec.describe EventsController, type: :controller do
       end
 
       it "assigns the new event to @event" do
-        post :create, event_id: my_event.id, post: {title: "A Title"}
+        post :create, event_id: my_event.id, event: {title: "A Title"}
         expect(assigns(:event)).to eq Event.last
       end
 
       it "redirects to the new event" do
-        post :create, event_id: my_event.id, post: {title: "A Title"}
-        expect(response).to redirect_to #event path - TBD
+        post :create, event_id: my_event.id, event: {title: "A Title"}
+        expect(response).to redirect_to event_path
       end
     end
   end
