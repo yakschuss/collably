@@ -7,19 +7,15 @@ RSpec.describe EventsController, type: :controller do
   context "guest" do
     describe "GET show" do
       it "returns http 302" do
-        get :show, event_id: my_event.id
+        get :show, id: my_event.id
         expect(response).to have_http_status(302)
       end
 
       it "redirects to the login page " do
-        get :show, event_id: my_event.id
+        get :show, id: my_event.id
         expect(response).to redirect_to new_user_session_path
       end
 
-      it "assigns my_event to @event" do
-        get :show, event_id: my_event.id
-        expect(assigns(:event)).to eq(my_event)
-      end
     end
 
     describe "GET new" do
@@ -38,17 +34,17 @@ RSpec.describe EventsController, type: :controller do
 
     describe "view" do
       it "succeeds" do
-        get :show, event_id: my_event.id
+        get :show, id: my_event.id
         expect(response).to have_http_status(:success)
       end
 
       it "renders the #show view" do
-        get :show, event_id: my_event.id
+        get :show, id: my_event.id
         expect(response).to render_template :show
       end
 
       it "assigns my_event to @event" do
-        get :show, event_id: my_event.id
+        get :show, id: my_event.id
         expect(assigns(:event)).to eq(my_event)
       end
     end
@@ -72,7 +68,7 @@ RSpec.describe EventsController, type: :controller do
 
     describe "POST create" do
       it "increases the number of Events by 1" do
-        expect{ post :create, event_id: my_event.id, event: {title: "A Title"} }.to change(Event,:count).by(1)
+        expect{ post :create, event: {title: "A Title"} }.to change(Event,:count).by(1)
       end
 
       it "assigns the new event to @event" do
@@ -81,8 +77,8 @@ RSpec.describe EventsController, type: :controller do
       end
 
       it "redirects to the new event" do
-        post :create, event_id: my_event.id, event: {title: "A Title"}
-        expect(response).to redirect_to event_path
+        post :create, event: {title: "A Title"}
+        expect(response).to redirect_to Event.last
       end
     end
   end
