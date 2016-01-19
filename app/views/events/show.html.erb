@@ -7,6 +7,14 @@
   </h1>
 </div>
 
+<div>
+  <h2>
+      <% @event.users.each do |item| %>
+    <%= render partial: "users/user", locals: {user: @user} %>
+    <% end %>
+  </h2>
+</div>
+
     <% if user_is_authorized_for_event?(@event) %>
     <div class="col-md-4">
       <p>You're allowed to be here!</p>
