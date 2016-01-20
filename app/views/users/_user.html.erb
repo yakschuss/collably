@@ -1,8 +1,10 @@
 <div class="media">
   <div class="media-body">
     <h4 class="media-heading">
-      <%= link_to user.first_name user.last_name, user_path(user) %>
+      <%#link_to user.first_name user.last_name, user_path(user) %>
     </h4>
     <%#user.role%>
   </div>
 </div>
+
+link_to "#{user.first_name} #{user.last_name}", user_path(@user)

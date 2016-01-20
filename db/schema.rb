@@ -16,10 +16,13 @@ ActiveRecord::Schema.define(version: 20160117170747) do
   create_table "event_user_roles", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "event_id"
-    t.integer  "role",       default: 1
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.integer  "role"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
+
+  add_index "event_user_roles", ["event_id"], name: "index_event_user_roles_on_event_id"
+  add_index "event_user_roles", ["user_id"], name: "index_event_user_roles_on_user_id"
 
   create_table "events", force: :cascade do |t|
     t.string   "title"

@@ -62,7 +62,7 @@ RSpec.describe EventsController, type: :controller do
 
       it "instantiates @event" do
         get :new, event_id: my_event.id
-        expect(assigns(:event)).not_to be_nil
+        expect(assigns(:event)).to eq(my_event)
       end
     end
 
