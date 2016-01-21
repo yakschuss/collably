@@ -3,7 +3,7 @@ class EventUserRole < ActiveRecord::Base
   belongs_to :event
   after_initialize :assign_user_role
 
-  enum role: [:member, :admin]
+  enum role: [:member, :admin, :invited]
 
   private
     def assign_user_role
