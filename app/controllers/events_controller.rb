@@ -9,8 +9,6 @@ class EventsController < ApplicationController
 
   def create
     @event = current_user.events.create(event_params)
-
-
       logger.debug "Event should be valid: #{@event.valid?}"
 
 
@@ -35,8 +33,13 @@ class EventsController < ApplicationController
       end
 
       def assign_owner
-        created_event =  EventUserRole.find_by(event_id: @event.id)
-        created_event.update_attribute(:role, "admin")
-        Rails.logger.info "****controller****assign_user_role #{created_event.role.inspect}"
+        if @event.valid?
+          created_event =  EventUserRole.find_by(event_id: @event.id)
+          created_event.update_attribute(:role, "admin")
+          Rails.logger.info "****controller****assign_user_role #{created_event.role.inspect}"
+        else
+          flash[:error] = "Error saving event, please try again"
+        end
       end
+
 end
