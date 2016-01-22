@@ -19,7 +19,8 @@ def invite_user(user_email)
       user.role ||= :invited
       user.invited_at = Time.now
     else
-      #devise_invitable
+      new_user = User.invite!({ email: "#{user_email}" })
+      self.users << new_user
     end
 end
 
