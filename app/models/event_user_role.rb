@@ -7,7 +7,10 @@ class EventUserRole < ActiveRecord::Base
 
   private
     def assign_user_role
-      self.role ||= :admin
-Rails.logger.info "******assign_user_role #{self.role.inspect}"
+        self.role ||= :invited
+Rails.logger.info "***EURmodel***assign_user_role #{self.role.inspect}"
     end
+
+
+
 end
