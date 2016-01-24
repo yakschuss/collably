@@ -28,7 +28,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 #create factories for test suite
 gem 'factory_girl_rails'
-
+gem 'faker'
 #generate code coverage report from test-suite
 gem 'simplecov', require: false, group: :test
 # Use ActiveModel has_secure_password
