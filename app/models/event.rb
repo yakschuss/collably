@@ -10,18 +10,25 @@ class Event < ActiveRecord::Base
 
 
 
-def invite_user(user_email)
-    email = user_email #.to_s
-    invited_user = User.find_by(email: "#{email}")
-    if invited_user
-      self.users << invited_user
-      user =  EventUserRole.find_by(user_id: "#{invited_user.id}", event_id: self.id)
-      user.role ||= :invited
-      user.invited_at = Time.now
-    else
-      new_user = User.invite!({ email: "#{user_email}" })
-      self.users << new_user
-    end
+def invite_the_user(user_email, event)
+
+  begin
+    invited_user = User.find_by(email: user_email)
+    #if invited_user
+
+    event.users << invited_user
+    event_user =  EventUserRole.find_by(user_id: "#{invited_user.id}", event_id: event.id)
+    event_user.role ||= :invited
+    true
+  rescue StandardError => e
+    false
+
+    #else
+    #  new_user = User.invite!({ email: "#{user_email}" })
+    #  self.users << new_user
+    #end
+  end
+
 end
 
 end

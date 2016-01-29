@@ -25,6 +25,17 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
   end
 
+  def invite_user
+    @event = Event.find(params[:id])
+    if @event.invite_the_user(params[:users][:email], @event) #not getting the user.email parameter from user/_form.html.erb
+      flash[:notice] = "User invited"
+      redirect_to @event
+    else
+      flash[:error] = "Unable to invite User"
+      render :show
+    end
+  end
+
 
     private
 
