@@ -12,7 +12,7 @@
       <ul class="nav nav-tabs">
         <li><%= link_to "Collably", root_path %></li>
         <% if current_user %>
-          <li><%= link_to 'Dashboard', user_path(current_user), :class => 'navbar-link' %></li>
+          <li><%= link_to "#{current_user.first_name}'s Dashboard", user_path(current_user), :class => 'navbar-link' %></li>
           <% end %>
         <div class="pull-right user-info">
           <% if current_user %>
