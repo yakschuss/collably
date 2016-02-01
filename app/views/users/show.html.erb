@@ -11,7 +11,9 @@
 <div class="media">
   <div class="media-body">
     <div class-"col-lg-4">
-      <%= render @user.events %>
+      <% @user.events.each do |event| %>
+        <%= render partial: "events/event", locals: {event: event} %>
+      <% end %>
     </div>
   </div>
 </div>
