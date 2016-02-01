@@ -6,8 +6,11 @@ end
 
 FactoryGirl.define do
   factory :user, class: 'User' do
+    first_name "Sir"
+    last_name "Lancelot"
     email
     password 'password'
     password_confirmation 'password'
+    confirmed_at Time.now
   end
 end
