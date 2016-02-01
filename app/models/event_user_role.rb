@@ -1,9 +1,10 @@
 class EventUserRole < ActiveRecord::Base
   belongs_to :user
   belongs_to :event
-  after_initialize :default_role
+  after_initialize :default_attributes
 
   enum role: [:member, :admin, :invited]
+  enum status: [:pending, :accepted]
 
 =begin
   def self.make_admin(user)
@@ -16,10 +17,14 @@ class EventUserRole < ActiveRecord::Base
 =end
 
   private
-    def default_role
+    def default_attributes
         self.role ||= :invited
-Rails.logger.info "***EURmodel***assign_user_role #{self.role.inspect}"
+Rails.logger.info "***EURmodel***default attribute - role #{self.role.inspect}"
+        self.status ||= :pending
+Rails.logger.info "***EURmodel***default attribute - status #{self.status.inspect}"
     end
+
+
 
 
 

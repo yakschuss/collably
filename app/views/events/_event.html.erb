@@ -1,7 +1,14 @@
 <div class="media">
   <div class="media-body">
     <h4 class="media-heading">
+    <% if @user.status(event.id) == "accepted" %>
       <%= link_to event.title, event_path(event.id) %>
+    <% else %>
+      <%= "#{event.title}" %>
+      <%= link_to "Accept", accept_invite_user_path(@user) %> |
+      <%= link_to "Decline", decline_invite_user_path(@user)%>
+    <% end %>
+    </div>
     </h4>
   </div>
 </div>

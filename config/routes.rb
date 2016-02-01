@@ -8,6 +8,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users, only: :show
+  resources :users, only: [:show] do
+    member do
+      get :accept_invite
+      get :decline_invite
+    end
+  end
   root to: 'welcome#index'
 end

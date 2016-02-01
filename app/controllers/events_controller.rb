@@ -47,6 +47,7 @@ class EventsController < ApplicationController
         if @event.valid?
           created_event =  EventUserRole.find_by(event_id: @event.id)
           created_event.update_attribute(:role, "admin")
+          created_event.update_attribute(:status, "accepted")
           Rails.logger.info "****controller****assign_user_role #{created_event.role.inspect}"
         else
           flash[:error] = "Error saving event, please try again"
