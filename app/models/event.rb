@@ -14,7 +14,7 @@ class Event < ActiveRecord::Base
 
     begin
       invited_user = User.find_by(email: user_email)
-      #if invited_user
+
 
       event.users << invited_user
       event_user =  EventUserRole.find_by(user_id: "#{invited_user.id}", event_id: event.id)
@@ -24,10 +24,6 @@ class Event < ActiveRecord::Base
     rescue StandardError => e
       false
 
-      #else
-      #  new_user = User.invite!({ email: "#{user_email}" })
-      #  self.users << new_user
-      #end
     end
 
   end
