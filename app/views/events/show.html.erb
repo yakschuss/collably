@@ -1,0 +1,22 @@
+<div class="col-md-8">
+  <h1>
+    <%= @event.title %><br>
+    <small>
+      submitted <%= time_ago_in_words(@event.created_at) %> ago by <%= @event.users.first.first_name %>
+    </small>
+  </h1>
+</div>
+
+<br>
+
+<div class="col-md-12">
+      <% @event.users.each do |user| %>
+        <%= render partial: "users/user", locals: {user: user} %>
+      <% end %>
+</div>
+
+    <% if user_is_authorized_for_event?(@event) %>
+    <div class="col-md-4">
+      <p>You're allowed to be here!</p>
+    </div>
+    <% end %>

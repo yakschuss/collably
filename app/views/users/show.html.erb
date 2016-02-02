@@ -1,0 +1,17 @@
+<h1><%= current_user.first_name %></h1>
+<p>Users#show</p>
+<p>Find me in app/views/users/show.html.erb</p>
+
+
+<div class="col-md-4 row">
+  <%= link_to "New Event", new_event_path, class: "btn btn-success" %>
+</div>
+<br>
+<br>
+<div class="media">
+  <div class="media-body">
+    <div class-"col-lg-4">
+      <%= render @user.events %>
+    </div>
+  </div>
+</div>
