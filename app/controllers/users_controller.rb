@@ -1,11 +1,11 @@
 class UsersController < ApplicationController
-#   before_action :authenticate_user!, only: [:show]
+  before_action :authenticate_user!, only: [:show]
   def show
     @user = User.find(params[:id])
   end
 
   def decline_invite
-      @user = User.find(params[:id])
+      @user = current_user
       @event = Event.find(params[:id])
 
       if @user.turn_down_invite(@event)
@@ -18,9 +18,9 @@ class UsersController < ApplicationController
   end
 
   def accept_invite
-    @user = User.find(params[:id])
+    @user = current_user
     @event = Event.find(params[:id])
-    if @user.accept_the_invite(@event)
+    if @user.accept_the_invite(@event.id)
       flash[:notice] = "Welcome!"
       redirect_to event_path(@event.id)
     else

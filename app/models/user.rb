@@ -28,8 +28,10 @@ class User < ActiveRecord::Base
     def accept_the_invite(event_id)
       invitation = EventUserRole.where(event_id: event_id, user_id: self.id).take
       if invitation
-       invitation.status = "accepted"
-       invitation.role = "member"
+       invitation.status = :accepted
+       invitation.role = :member
+
+      invitation.save!
       else
        "no such event"
       end

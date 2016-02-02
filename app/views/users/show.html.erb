@@ -5,15 +5,14 @@
 
 <div class="col-md-4 row">
   <%= link_to "New Event", new_event_path, class: "btn btn-success" %>
+</br>
 </div>
 <br>
 <br>
-<div class="media">
-  <div class="media-body">
-    <div class-"col-lg-4">
+<div class="container">
+    <div class="col-md-12">
       <% @user.events.each do |event| %>
         <%= render partial: "events/event", locals: {event: event} %>
       <% end %>
     </div>
-  </div>
 </div>
