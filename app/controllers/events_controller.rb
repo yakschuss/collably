@@ -27,12 +27,14 @@ class EventsController < ApplicationController
 
   def invite_user
     @event = Event.find(params[:id])
-    if @event.invite_the_user(params[:users][:email], @event) #not getting the user.email parameter from user/_form.html.erb
-      flash[:notice] = "User invited"
+
+
+    if @event.invite_the_user(params[:users][:email], @event)
+      flash[:notice] = "Pending Invitation - waiting for user to accept."
       redirect_to @event
     else
-      flash[:error] = "Unable to invite User"
-      render :show
+      flash[:error] = "That person isn't in the app! Now's your chance to invite them!"
+      render file: "devise/invitations/new"
     end
   end
 
