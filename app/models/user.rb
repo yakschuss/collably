@@ -37,9 +37,4 @@ class User < ActiveRecord::Base
       end
     end
 
-        def make_admin(event_id)
-          member = EventUserRole.where(event_id: event_id, user_id: self.id).take
-            member.role = :admin
-            member.save!
-        end
 end

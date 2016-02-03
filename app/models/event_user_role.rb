@@ -19,9 +19,7 @@ class EventUserRole < ActiveRecord::Base
   private
     def default_attributes
         self.role ||= :invited
-Rails.logger.info "***EURmodel***default attribute - role #{self.role.inspect}"
         self.status ||= :pending
-Rails.logger.info "***EURmodel***default attribute - status #{self.status.inspect}"
     end
 
 
