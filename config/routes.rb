@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :events do
     member do
       post :invite_user, as: "invite_user"
+      post :update_user, as: "update_user"
     end
   end
 

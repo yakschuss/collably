@@ -38,6 +38,41 @@ class EventsController < ApplicationController
     end
   end
 
+  def update_user
+    @making_admin = params[:boolean]
+    @user = params[:user_id]
+    @event = Event.find(params[:id])
+
+
+    if @making_admin
+      @event.update_user_role(@user)
+        flash[:notice] = "Role Updated."
+        redirect_to @event
+    else
+        flash[:error] = "Oops! Something went wrong. Try again."
+        redirect_to @event
+    end
+
+  end
+
+=begin
+  def edit
+    @event = Event.find(params[:id])
+  end
+
+  def update
+    @event = Event.find(params[:id])
+    @event.assign_attributes#
+
+    if @event.save
+      flash[:notice] = "Event edited."
+      redirect_to @event
+    else
+      flash[:error] = "There was an error fixing the event. Please try again."
+      render :edit
+    end
+  end
+=end
 
     private
 

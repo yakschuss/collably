@@ -14,8 +14,6 @@ class Event < ActiveRecord::Base
 
     begin
       invited_user = User.find_by(email: user_email)
-
-
       event.users << invited_user
       event_user =  EventUserRole.find_by(user_id: "#{invited_user.id}", event_id: event.id)
       event_user.role ||= :invited
@@ -23,9 +21,12 @@ class Event < ActiveRecord::Base
       true
     rescue StandardError => e
       false
-
     end
+  end
 
+  def update_user_role(user_id)
+    member = EventUserRole.where(event_id: self.id, user_id: user_id).take
+    member.update(role: "admin")
   end
 
 
