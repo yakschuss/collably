@@ -8,7 +8,7 @@
         <small><%= label_tag "make admin?" %></small>
           <%= hidden_field_tag("user_id", user.id) %>
           <%= check_box_tag :boolean %>
-          <%= submit_tag 'Confirm' %>
+          <%= submit_tag("#{"\&#x2713".html_safe}", :class => "btn btn-notice btn-circle" ) %>
           <% end %>
         <% end %>
     </h4>
