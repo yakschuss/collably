@@ -28,6 +28,7 @@ class EventsController < ApplicationController
   def invite_user
     @event = Event.find(params[:id])
 
+    @user = User.find_by(params[:users][:email])
 
     if @event.invite_the_user(params[:users][:email], @event)
       flash[:notice] = "Pending Invitation - waiting for user to accept."
