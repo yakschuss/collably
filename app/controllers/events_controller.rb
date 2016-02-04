@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
 
   before_action :authenticate_user!, only: [:new, :create, :show]
+  before_action :authorize_user, only: [:update_user, :invite_user]
   after_action :assign_owner, only: [:create]
 
   def new
@@ -96,4 +97,13 @@ class EventsController < ApplicationController
         end
       end
 
+      def authorize_user
+      @event = Event.find(params[:id])
+      @admins = @event.all_user_roles(@event.id, "1")
+      Rails.logger.info "#{@admins.inspect}"
+        unless @admins.find { | eur | eur.user_id == current_user.id }
+          flash[:error] = "You must be an admin to do that."
+          redirect_to @event
+        end
+      end
 end
