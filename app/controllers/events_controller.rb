@@ -101,7 +101,7 @@ class EventsController < ApplicationController
       @event = Event.find(params[:id])
       @admins = @event.all_user_roles(@event.id, "1")
       Rails.logger.info "#{@admins.inspect}"
-        unless @admins.find { | eur | eur.user_id == current_user.id }
+        unless @admins.find { | user | user.id == current_user.id }
           flash[:error] = "You must be an admin to do that."
           redirect_to @event
         end

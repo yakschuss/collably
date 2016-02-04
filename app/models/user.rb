@@ -40,7 +40,7 @@ class User < ActiveRecord::Base
 
     def all_event_statuses(id, status)
       user = User.find(id)
-      user.roles.where(status: status)
+      user.events.references(:roles).where(event_user_roles: {status: status}) 
         #In order to access the output's users associated, I iterated through, .each do |role|, and then called role.user.ATTRIBUTES
     end
 

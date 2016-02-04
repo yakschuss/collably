@@ -32,7 +32,7 @@ class Event < ActiveRecord::Base
 
   def all_user_roles(id, role)
     event = Event.find(id)
-    event.roles.where(role: role)
+    event.users.references(:roles).where(event_user_roles: {role: role})
     #In order to access the output's users associated, I iterated through, .each do |role|, and then called role.user.ATTRIBUTES
   end
 
