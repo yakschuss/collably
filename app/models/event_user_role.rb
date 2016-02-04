@@ -4,7 +4,9 @@ class EventUserRole < ActiveRecord::Base
   after_initialize :default_attributes
 
   validates :user_id, uniqueness: { scope: :event_id }
-  
+
+
+
   enum role: [:member, :admin, :invited]
   enum status: [:pending, :accepted]
 

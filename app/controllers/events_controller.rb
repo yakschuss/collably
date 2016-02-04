@@ -11,6 +11,7 @@ class EventsController < ApplicationController
     @event = current_user.events.create(event_params)
       logger.debug "Event should be valid: #{@event.valid?}"
 
+  #    @event.users.create(user: current_user, role: "admin", status: "accepted")
 
       if @event.save
         flash[:notice] = "Your event was created successfully."
@@ -23,13 +24,16 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+    @admins = @event.all_user_roles(@event.id, "1")
+    @members = @event.all_user_roles(@event.id, "0")
+    @invited = @event.all_user_roles(@event.id, "2")
   end
 
   def invite_user
     @event = Event.find(params[:id])
 
-    @user = User.find_by(params[:users][:email])
-
+  #  @user = User.find_by(params[:users][:email])
+  #Need to validate uniqueness of user-event before running invite_the_user - right now, event_user_role - validate uniqueness of user_id throws a "That person isn't in the app error!"
     if @event.invite_the_user(params[:users][:email], @event)
       flash[:notice] = "Pending Invitation - waiting for user to accept."
       redirect_to @event

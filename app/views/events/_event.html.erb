@@ -1,7 +1,7 @@
     <h4 class="media-heading">
-    <% if @user.status(event.id) == "accepted" && @user == current_user %>
+    <% if @user.event_status(event.id) == "accepted" && @user == current_user %>
       <%= link_to event.title, event_path(event.id) %>
-    <% elsif @user.status(event.id) == "pending" && @user == current_user %>
+    <% elsif @user.event_status(event.id) == "pending" && @user == current_user %>
       <%= "#{event.title}" %>
       <%= link_to "Accept", accept_invite_user_path(event.id) %> |
       <%= link_to "Decline", decline_invite_user_path(event.id)%>

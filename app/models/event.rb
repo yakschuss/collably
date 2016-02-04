@@ -10,6 +10,7 @@ class Event < ActiveRecord::Base
 
 
 
+
   def invite_the_user(user_email, event)
 
     begin
@@ -29,6 +30,11 @@ class Event < ActiveRecord::Base
     member.update(role: "admin")
   end
 
+  def all_user_roles(id, role)
+    event = Event.find(id)
+    event.roles.where(role: role)
+    #In order to access the output's users associated, I iterated through, .each do |role|, and then called role.user.ATTRIBUTES
+  end
 
 
 end

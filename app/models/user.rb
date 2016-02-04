@@ -4,14 +4,15 @@ class User < ActiveRecord::Base
 
     has_many :roles, class_name: "EventUserRole"
     has_many :events, through: :roles#, conditions: {status: 'accepted'}
+
   #  has_many :pending_events, through: :event_user_roles, source: :event#, conditions: {status: 'pending'} accepts_nested_attributes_for :events
 
-    def role(event_id)
+    def event_role(event_id)
       query = EventUserRole.where(event_id: event_id, user_id: self.id).take
       query ? query.role : "none"
     end
 
-    def status(event_id)
+    def event_status(event_id)
       query = EventUserRole.where(event_id: event_id, user_id: self.id).take
       query ? query.status : "none"
     end
@@ -36,5 +37,12 @@ class User < ActiveRecord::Base
        "no such event"
       end
     end
+
+    def all_event_statuses(id, status)
+      user = User.find(id)
+      event_w_status = user.events.includes(:roles).where('status  = ?', status)
+    end
+
+
 
 end

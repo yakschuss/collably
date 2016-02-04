@@ -10,10 +10,26 @@
 <br>
 
 <div class="col-md-12">
-      <% @event.users.each do |user| %>
+  <h3>Admins</h3>
+      <% @admins.each do |user| %>
         <%= render partial: "users/user", locals: {user: user} %>
       <% end %>
 </div>
+
+<div class="col-md-12">
+  <h3>Members</h3>
+      <% @members.each do |user| %>
+        <%= render partial: "users/user", locals: {user: user} %>
+      <% end %>
+</div>
+
+<div class="col-md-12">
+  <h3>Invited</h3>
+      <% @invited.each do |user| %>
+        <%= render partial: "users/user", locals: {user: user} %>
+      <% end %>
+</div>
+<br>
 <div class="col-md-12">
   <%= render partial: "users/form", locals: {event: @event} %>
 </div>
