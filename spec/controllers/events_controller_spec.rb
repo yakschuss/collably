@@ -84,26 +84,21 @@ RSpec.describe EventsController, type: :controller do
   end
 
     context "admin inviting and updating users of his/her event" do
-      before do
-        Rails.logger.info "#{my_event.inspect}"
-          event_admin_id = my_event.users.first.id
-          attributes = {role: "admin", status: "accepted"}
-          event_admin = EventUserRole.where(user_id: event_admin_id, event_id: my_event.id).first
-          event_admin.update_attributes(attributes)
-        end
 
       describe "POST invite_user" do
         it "adds a new user to the event's users" do
-         expect{ post :invite_user, id: my_event.id}.to change(my_event.users,:count).by(1)
+          pending 'not complete'
+          #how to test form_tag? need email: param to go through - my_user.email
+          expect{ post :invite_user, id: my_event.id}.to change(my_event.users,:count).by(1)
         end
       end
 
       describe "POST update_user" do
         it "changes a specific user's role to admin" do
-        #  expect(user.role).to eq("admin")
+        pending 'not complete'
+    #      post :update_user, id: my_event.id #again - testing form_tag - need parameter boolean
+         expect(my_user.event_role(my_event.id)).to eq("admin")
         end
       end
-
-
-  end
+    end
 end

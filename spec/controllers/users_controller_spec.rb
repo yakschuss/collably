@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe UsersController, type: :controller do
   let(:my_user) {create(:user, confirmed_at: Time.now)}
   let(:event_with_user){create(:event)}
+  let(:join){EventUserRole.create!(user_id: my_user.id, event_id: event_with_user.id, role: 2, status: 0)}
 
   before do
     sign_in my_user
@@ -18,13 +19,15 @@ RSpec.describe UsersController, type: :controller do
   context "user deciding to join or leave invite he/she was invited to" do
 
 
-      let(:join){EventUserRole.create!(user_id: my_user.id, event_id: event_with_user.id, role: 2, status: 0)}
 
 
-    describe "POST decline_invite", focus: true do
+
+    describe "POST decline_invite" do
+      before do
+        EventUserRole.create!(user_id: my_user.id, event_id: event_with_user.id, role: 2, status: 0)
+      end
       it "removes the invitation from user.events" do
-        
-      expect{post :decline_invite, id: event_with_user.id}.to change(my_user.events, :count).by(1)
+        expect{post :decline_invite, id: event_with_user.id}.to change(my_user.events, :count).by(-1)
       end
 
       it "should return to user#show" do
