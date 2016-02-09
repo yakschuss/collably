@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe EventsController, type: :controller do
   let(:my_event) {create(:event)}
-  let(:my_user) {create(:user, confirmed_at: Time.now)}
+  let(:my_user) {create(:user, first_name: "New", last_name: "User", confirmed_at: Time.now)}
 
   context "guest" do
     describe "GET show" do
@@ -62,7 +62,7 @@ RSpec.describe EventsController, type: :controller do
 
       it "instantiates @event" do
         get :new, event_id: my_event.id
-        expect(assigns(:event)).to eq(my_event)
+        expect(assigns(:event)).to be_a_new(Event)
       end
     end
 
@@ -83,46 +83,27 @@ RSpec.describe EventsController, type: :controller do
     end
   end
 
-=begin
-    describe "GET edit" do
-      it "returns http success" do
-        get :edit, event_id: my_event.id
-        expect(response).to have_http_status(:success)
+    context "admin inviting and updating users of his/her event" do
+      before do
+        Rails.logger.info "#{my_event.inspect}"
+          event_admin_id = my_event.users.first.id
+          attributes = {role: "admin", status: "accepted"}
+          event_admin = EventUserRole.where(user_id: event_admin_id, event_id: my_event.id).first
+          event_admin.update_attributes(attributes)
+        end
+
+      describe "POST invite_user" do
+        it "adds a new user to the event's users" do
+         expect{ post :invite_user, id: my_event.id}.to change(my_event.users,:count).by(1)
+        end
       end
 
-      it "renders the #edit view" do
-        get :edit, event_id: my_event.id
-        expect(response).to render_template :edit
+      describe "POST update_user" do
+        it "changes a specific user's role to admin" do
+        #  expect(user.role).to eq("admin")
+        end
       end
 
-      it "assigns event to be updated to @event" do
-        get :edit, event_id: my_event.id
-        event_instance = assigns(:event)
 
-        expect(event_instance.id).to eq my_event.id
-        expect(event_instance.title).to eq my_event.title
-
-      end
-    end
-
-    describe "PUT update" do
-      it "updates event with expected attributes" do
-        new_title = "A Title1"
-
-        put :update, event_id: my_event.id, event: {title: new_title}
-
-        updated_event = assigns(:event)
-        expect(updated_event.id).to eq my_event.id
-        expect(updated_event.title).to eq new_title
-
-      end
-
-      it "redirects to the updated event" do
-        new_title = "A Title1"
-
-        put :update, event_id: my_event.id, event: {title: new_title}
-        expect(response).to redirect_to #event_path
-      end
-    end
-=end
+  end
 end

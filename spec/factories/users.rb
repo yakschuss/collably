@@ -13,4 +13,13 @@ FactoryGirl.define do
     password_confirmation 'password'
     confirmed_at Time.now
   end
+
+  factory :admin_user, class: 'User' do
+    first_name "The"
+    last_name "Admin"
+    email
+    password 'password'
+    password_confirmation 'password'
+    confirmed_at Time.now
+  end
 end

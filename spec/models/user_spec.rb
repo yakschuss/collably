@@ -10,7 +10,7 @@ RSpec.describe User, type: :model do
 
     describe "user method #role" do
       it "returns the user role" do
-        expect(@user.role(event.id)).to eq("invited")
+        expect(@user.event_role(event.id)).to eq("invited")
       end
     end
 
@@ -21,4 +21,13 @@ RSpec.describe User, type: :model do
   end
 
 
+    describe "user method #turn_down_invite" do
+      
+      it "gets rid of user-event relationship" do
+
+      end
+    end
+    describe "user method #accept_the_invite"
+    describe "user method #event_status"
+    describe "all_event_statuses"
 end

@@ -3,7 +3,7 @@ FactoryGirl.define do
     title "MyString"
 
     after(:create) do |event|
-      event.users << FactoryGirl.create(:user)
+      event.users << FactoryGirl.create(:admin_user)
     end
       end
 
