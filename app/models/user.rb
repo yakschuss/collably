@@ -31,8 +31,7 @@ class User < ActiveRecord::Base
       if invitation
        invitation.status = :accepted
        invitation.role = :member
-
-      invitation.save!
+       invitation.save!
       else
        "no such event"
       end
@@ -40,7 +39,7 @@ class User < ActiveRecord::Base
 
     def all_event_statuses(id, status)
       user = User.find(id)
-      user.events.references(:roles).where(event_user_roles: {status: status}) 
+      user.events.references(:roles).where(event_user_roles: {status: status})
         #In order to access the output's users associated, I iterated through, .each do |role|, and then called role.user.ATTRIBUTES
     end
 

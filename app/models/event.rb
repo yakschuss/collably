@@ -11,17 +11,19 @@ class Event < ActiveRecord::Base
 
 
 
-  def invite_the_user(user_email, event)
+  def invite_the_user(user_email, event_id)
 
     begin
       invited_user = User.find_by(email: user_email)
+      event = Event.find(event_id.id)
       event.users << invited_user
       event_user =  EventUserRole.find_by(user_id: "#{invited_user.id}", event_id: event.id)
       event_user.role ||= :invited
       event_user.status ||= 0
-      true
+      return true
     rescue StandardError => e
-      false
+Rails.logger.info "#{e.inspect}"
+      return false
     end
   end
 
@@ -33,7 +35,7 @@ class Event < ActiveRecord::Base
   def all_user_roles(id, role)
     event = Event.find(id)
     event.users.references(:roles).where(event_user_roles: {role: role})
-    #In order to access the output's users associated, I iterated through, .each do |role|, and then called role.user.ATTRIBUTES
+
   end
 
 
