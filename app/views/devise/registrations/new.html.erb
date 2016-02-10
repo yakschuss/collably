@@ -37,3 +37,7 @@
 <% end %>
 
 <%= render "devise/shared/links" %>
+
+<div class="social-wrap">
+    <button id="facebook"><%= link_to "Sign in with Facebook", omniauth_authorize_path(resource_name, :facebook), style: "color: white" %></button>
+  </div>
