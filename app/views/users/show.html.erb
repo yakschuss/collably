@@ -11,12 +11,12 @@
 <br>
 <div class="container">
     <div class="col-md-12">
-      <% @accepted.each do |event| %>
+      <% @user.accepted_events.each do |event| %>
         <%= render partial: "events/event", locals: {event: event} %>
       <% end %>
     </div>
     <div class="col-md-12">
-      <% @pending.each do |event| %>
+      <% @user.pending_events.each do |event| %>
         <%= render partial: "events/event", locals: {event: event} %>
       <% end %>
     </div>

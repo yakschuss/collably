@@ -2,8 +2,6 @@ class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:show]
   def show
     @user = User.find(params[:id])
-    @accepted = @user.all_event_statuses(@user.id, "1")
-    @pending = @user.all_event_statuses(@user.id, "0")
   end
 
   def decline_invite

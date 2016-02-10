@@ -37,12 +37,12 @@ class User < ActiveRecord::Base
       end
     end
 
-    def all_event_statuses(id, status)
-  #    user.events.references(:roles).where(event_user_roles: {status: status})
-      event_joins = EventUserRole.where(user_id: id, status: status)
-      Rails.logger.info "#{event_joins.inspect}"
-      events = event_joins.map{|eur| eur.event}
-      return events
+    def accepted_events
+      events.includes(:roles).where("event_user_roles.status = ?", EventUserRole::ACCEPTED_STATUS)
+    end
+
+    def pending_events
+      events.includes(:roles).where("event_user_roles.status = ?", EventUserRole::PENDING_STATUS)
     end
 
 
