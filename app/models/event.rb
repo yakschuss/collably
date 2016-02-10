@@ -16,7 +16,7 @@ class Event < ActiveRecord::Base
       event.users << invited_user
       event_user =  EventUserRole.find_by(user_id: "#{invited_user.id}", event_id: event.id)
       event_user.role ||= :invited
-      event_user.status ||= 0
+      event_user.status ||= EventUserRole::PENDING_STATUS
       return true
     rescue StandardError => e
 Rails.logger.info "#{e.inspect}"
