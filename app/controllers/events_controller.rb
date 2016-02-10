@@ -33,8 +33,9 @@ class EventsController < ApplicationController
   def invite_user
     @event = Event.find(params[:id])
 
-  #  @user = User.find_by(params[:users][:email])
+
   #Need to validate uniqueness of user-event before running invite_the_user - right now, event_user_role - validate uniqueness of user_id throws a "That person isn't in the app error!"
+  #would refactor if statement
     if @event.invite_the_user(params[:users][:email], @event)
       flash[:notice] = "Pending Invitation - waiting for user to accept."
       redirect_to @event
@@ -61,24 +62,6 @@ class EventsController < ApplicationController
 
   end
 
-=begin
-  def edit
-    @event = Event.find(params[:id])
-  end
-
-  def update
-    @event = Event.find(params[:id])
-    @event.assign_attributes#
-
-    if @event.save
-      flash[:notice] = "Event edited."
-      redirect_to @event
-    else
-      flash[:error] = "There was an error fixing the event. Please try again."
-      render :edit
-    end
-  end
-=end
 
     private
 
@@ -89,18 +72,15 @@ class EventsController < ApplicationController
       def assign_owner
         if @event.valid?
           created_event =  EventUserRole.find_by(event_id: @event.id)
-          created_event.update_attribute(:role, "admin")
-          created_event.update_attribute(:status, "accepted")
-          Rails.logger.info "****controller****assign_user_role #{created_event.role.inspect}"
+          created_event.update_attributes(role: "admin", status: EventUserRole::ACCEPTED_STATUS)
         else
           flash[:error] = "Error saving event, please try again"
         end
       end
 
       def authorize_user
-      @event = Event.find(params[:id])
-      @admins = @event.all_user_roles(@event.id, "1")
-      Rails.logger.info "#{@admins.inspect}"
+        @event = Event.find(params[:id])
+        @admins = @event.all_user_roles(@event.id, "1")
         unless @admins.find { | user | user.id == current_user.id }
           flash[:error] = "You must be an admin to do that."
           redirect_to @event

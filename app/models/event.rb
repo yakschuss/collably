@@ -13,14 +13,17 @@ class Event < ActiveRecord::Base
     begin
       invited_user = User.find_by(email: user_email)
       event = Event.find(event_id.id)
+
       event.users << invited_user
+
       event_user =  EventUserRole.find_by(user_id: "#{invited_user.id}", event_id: event.id)
       event_user.role ||= :invited
       event_user.status ||= EventUserRole::PENDING_STATUS
-      return true
+
+       true
     rescue StandardError => e
 Rails.logger.info "#{e.inspect}"
-      return false
+       false
     end
   end
 
@@ -32,7 +35,6 @@ Rails.logger.info "#{e.inspect}"
   def all_user_roles(id, role)
     event = Event.find(id)
     event.users.references(:roles).where(event_user_roles: {role: role})
-
   end
 
 

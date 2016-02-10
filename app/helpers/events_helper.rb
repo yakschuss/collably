@@ -1,5 +1,5 @@
 module EventsHelper
-
+#methods allow custom devise sign_in forms in the event views
   def resource_name
    :user
   end
@@ -12,7 +12,4 @@ module EventsHelper
    @devise_mapping ||= Devise.mappings[:user]
   end
 
-  def user_is_authorized_for_event?(event)
-      #current_user && (current_user == post.user || current_user.invited?)
-  end
 end

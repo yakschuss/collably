@@ -35,9 +35,3 @@
   <%= render partial: "users/form", locals: {event: @event} %>
   <% end %>
 </div>
-
-    <% if user_is_authorized_for_event?(@event) %>
-    <div class="col-md-4">
-      <p>You're allowed to be here!</p>
-    </div>
-    <% end %>

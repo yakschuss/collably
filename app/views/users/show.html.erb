@@ -1,12 +1,6 @@
 <h1><%= @user.first_name %> <small><%= @user.email %></small></h1>
-<p>Users#show</p>
-<p>Find me in app/views/users/show.html.erb</p>
 
 
-<div class="col-md-4 row">
-  <%= link_to "New Event", new_event_path, class: "btn btn-success" %>
-</br>
-</div>
 <br>
 <br>
 <div class="container">
@@ -20,4 +14,9 @@
         <%= render partial: "events/event", locals: {event: event} %>
       <% end %>
     </div>
+</div>
+
+<div class="col-md-4 row">
+  <%= link_to "New Event", new_event_path, class: "btn btn-success" %>
+</br>
 </div>
