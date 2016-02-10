@@ -42,21 +42,24 @@ RSpec.describe User, type: :model do
 
 
     context "all_event_statuses" do
-      let(:event1) {Event.create!(title: "event1title") }
-      let(:event2) {Event.create!(title: "event2title") }
-      let(:event3) {Event.create!(title: "event3title") }
-      let(:event4) {Event.create!(title: "event4title") }
+        let(:event1) {Event.create!(title: "event1title") }
+        let(:event2) {Event.create!(title: "event2title") }
+        let(:event3) {Event.create!(title: "event3title") }
+        let(:event4) {Event.create!(title: "event4title") }
 
+        before(:each) do
+          EventUserRole.create(user: user, event: event1, status: 0)
+          EventUserRole.create(user: user, event: event2, status: 0)
+          EventUserRole.create(user: user, event: event3, status: 1)
+          EventUserRole.create(user: user, event: event4, status: 1)
+        end
 
-      it "returns all event accepted statuses associated with the user" do
-        expect(user.all_event_statuses(user.id, "1")).to match_array([event3, event4])
+        it "returns all event accepted statuses associated with the user" do
+          expect(user.accepted_events).to match_array([event3, event4])
+        end
+
+        it "returns all event pending statuses associated with the user" do
+          expect(user.pending_events).to match_array([event1, event2, event])
+        end
       end
-
-      it "returns all event pending statuses associated with the user" do
-        user.events += [event1, event2, event3, event4]
-Rails.logger.info"-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1-#{user.events.inspect}"
-Rails.logger.info"-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1-#{user.all_event_statuses(user.id, 0).inspect}"
-        expect(user.all_event_statuses(user.id, "0")).to match_array([event1, event2, event])
-      end
-    end
 end
