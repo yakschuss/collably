@@ -4,9 +4,6 @@ class Event < ActiveRecord::Base
 
   validates :title, length: {minimum: 5}, presence: true
 
-  #scope :admin, -> { where(roles: 'admin') }
-  #scope :members, -> {where(roles: 'member')}
-
 
 
 

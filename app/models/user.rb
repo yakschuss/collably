@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
     has_many :roles, class_name: "EventUserRole"
     has_many :events, through: :roles#, conditions: {status: 'accepted'}
 
-  #  has_many :pending_events, through: :event_user_roles, source: :event#, conditions: {status: 'pending'} accepts_nested_attributes_for :events
+
 
     def event_role(event_id)
       query = EventUserRole.where(event_id: event_id, user_id: self.id).take
@@ -38,9 +38,11 @@ class User < ActiveRecord::Base
     end
 
     def all_event_statuses(id, status)
-      user = User.find(id)
-      user.events.references(:roles).where(event_user_roles: {status: status})
-        #In order to access the output's users associated, I iterated through, .each do |role|, and then called role.user.ATTRIBUTES
+  #    user.events.references(:roles).where(event_user_roles: {status: status})
+      event_joins = EventUserRole.where(user_id: id, status: status)
+      Rails.logger.info "#{event_joins.inspect}"
+      events = event_joins.map{|eur| eur.event}
+      return events
     end
 
 

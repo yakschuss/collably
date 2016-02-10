@@ -4,6 +4,7 @@ RSpec.describe EventsController, type: :controller do
   let(:my_event) {create(:event)}
   let(:my_user) {create(:user, first_name: "New", last_name: "User", confirmed_at: Time.now)}
 
+
   context "guest" do
     describe "GET show" do
       it "returns http 302" do
@@ -84,20 +85,25 @@ RSpec.describe EventsController, type: :controller do
   end
 
     context "admin inviting and updating users of his/her event" do
-
-      describe "POST invite_user" do
+      before do
+        my_event.update_user_role(my_event.users.first.id)
+        admin = my_event.users.first
+        sign_in admin
+      end
+      context "POST invite_user" do
+        let(:invite_a_user){post :invite_user, id: my_event.id, users: {email: my_user.email}}
         it "adds a new user to the event's users" do
-          pending 'not complete'
-          #how to test form_tag? need email: param to go through - my_user.email
-          expect{ post :invite_user, id: my_event.id}.to change(my_event.users,:count).by(1)
+          expect{ invite_a_user }.to change(my_event.users,:count).by(1)
         end
       end
 
-      describe "POST update_user" do
+      context "POST update_user" do
+        before do
+          my_event.users << my_user
+        end
         it "changes a specific user's role to admin" do
-        pending 'not complete'
-    #      post :update_user, id: my_event.id #again - testing form_tag - need parameter boolean
-         expect(my_user.event_role(my_event.id)).to eq("admin")
+          post :update_user, id: my_event.id , user_id: my_user.id, boolean: 1
+          expect(my_user.event_role(my_event.id)).to eq("admin")
         end
       end
     end
