@@ -1,0 +1,16 @@
+<div class="media">
+  <div class="media-body">
+    <h4 class="media-heading">
+      <%= link_to "#{user.full_name}", user_path(user) %>
+      <small> : <%= user.event_role(@event.id) %> </small>
+      <% if current_user.event_role(@event.id) == "admin" && user.event_role(@event.id) == "member" %>
+        <%= form_tag(update_user_event_path, method: 'post', ) do %>
+        <small><%= label_tag "make admin?" %></small>
+          <%= hidden_field_tag("user_id", user.id) %>
+          <%= check_box_tag :boolean %>
+          <%= submit_tag("OK", :class => "btn btn-notice btn-circle" ) %>
+          <% end %>
+        <% end %>
+    </h4>
+  </div>
+</div>

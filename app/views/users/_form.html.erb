@@ -1,0 +1,9 @@
+<%= form_for :users, url: invite_user_event_path(@event) do |f| %>
+<div class="field">
+  <%= f.label :email %> <br/>
+  <%= f.email_field :email %>
+</div>
+
+      <%= f.submit "Add New User", class: 'btn btn-success' %>
+
+    <% end %>

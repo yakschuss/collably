@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 
 #allow users to be authenticated and confirmed
 gem 'devise'
+gem 'devise_invitable'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
 # Use sqlite3 as the database for Active Record
@@ -27,7 +28,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 #create factories for test suite
 gem 'factory_girl_rails'
-
+gem 'faker'
 #generate code coverage report from test-suite
 gem 'simplecov', require: false, group: :test
 # Use ActiveModel has_secure_password

@@ -1,0 +1,37 @@
+<div class="col-md-8">
+  <h1>
+    <%= @event.title %><br>
+    <small>
+      submitted <%= time_ago_in_words(@event.created_at) %> ago by <%= @event.users.first.first_name %>
+    </small>
+  </h1>
+</div>
+
+<br>
+
+<div class="col-md-12">
+  <h3>Admins</h3>
+      <% @admins.each do |user| %>
+        <%= render partial: "users/user", locals: {user: user} %>
+      <% end %>
+</div>
+
+<div class="col-md-12">
+  <h3>Members</h3>
+      <% @members.each do |user| %>
+        <%= render partial: "users/user", locals: {user: user} %>
+      <% end %>
+</div>
+
+<div class="col-md-12">
+  <h3>Invited</h3>
+      <% @invited.each do |user| %>
+        <%= render partial: "users/user", locals: {user: user} %>
+      <% end %>
+</div>
+<br>
+<div class="col-md-12">
+  <% if current_user.event_role(@event.id) == "admin" %>
+  <%= render partial: "users/form", locals: {event: @event} %>
+  <% end %>
+</div>
