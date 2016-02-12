@@ -9,6 +9,10 @@ Rails.application.routes.draw do
     end
   end
 
+  get "mailbox/inbox" => "mailbox#inbox", as: :mailbox_inbox
+  get "mailbox/sent" => "mailbox#sent", as: :mailbox_sent
+  get "mailbox/trash" => "mailbox#trash", as: :mailbox_trash
+
   resources :users, only: [:show] do
     member do
       get :accept_invite
