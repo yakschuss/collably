@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
     has_many :roles, class_name: "EventUserRole"
     has_many :events, through: :roles
 
+    acts_as_messageable
 
 
     def event_role(event_id)
@@ -43,6 +44,12 @@ class User < ActiveRecord::Base
       events.includes(:roles).where("event_user_roles.status = ?", EventUserRole::PENDING_STATUS)
     end
 
+    def mailboxer_name
+      self.first_name + " " + self.last_name
+    end
 
+    def mailboxer_email
+      self.email
+    end
 
 end
