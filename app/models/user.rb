@@ -48,7 +48,7 @@ class User < ActiveRecord::Base
       self.first_name + " " + self.last_name
     end
 
-    def mailboxer_email
+    def mailboxer_email(object)
       self.email
     end
 
