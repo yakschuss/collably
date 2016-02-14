@@ -15,9 +15,19 @@ class ConversationsController < ApplicationController
     conversation.mark_as_read(current_user)
   end
 
+  def reply
+    current_user.reply_to_conversation(conversation, message_params[:body])
+    flash[:success] = "Your message was sent successfully!"
+    redirect_to conversation_path(conversation)
+  end
+
   private
 
   def conversation_params
     params.require(:conversation).permit(:subject, :body, recipients: [])
+  end
+
+  def message_params
+    params.require(:message).permit(:body, :subject)
   end
 end
