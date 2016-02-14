@@ -16,7 +16,11 @@
   <div class="col-md-8">
     <div class="panel panel-default">
       <div class="panel-body">
-        <!-- individual conversations will show here -->
+        <% if is_conversation %>
+          <%= render 'conversations/form' %>
+        <% else %>
+        <!-- TODO -->
+        <% end %>
       </div>
     </div>
   </div>
