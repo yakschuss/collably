@@ -20,7 +20,7 @@ Rails.application.routes.draw do
       post :untrash
     end
   end
-end
+
   resources :users, only: [:show] do
     member do
       get :accept_invite
