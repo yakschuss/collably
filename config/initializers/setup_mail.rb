@@ -1,5 +1,5 @@
 if Rails.env.development? || Rails.env.production?
-    ActionMailer::Base.delivery_method = :stmp
+    ActionMailer::Base.delivery_method = :smtp
     ActionMailer::Base.smtp_settings = {
       address:          'smtp.sendgrid.net',
       port:             '2525',
