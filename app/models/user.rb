@@ -57,5 +57,14 @@ class User < ActiveRecord::Base
       User.select(:id, :email).joins(:roles).where("event_user_roles.event_id IN (?) AND event_user_roles.user_id != ?", event_ids, self.id)
     end
 
+    def unread_messages?
+      array = []
+      self.receipts.each do |message|
+        array << message.is_unread?
+      end
+      return array.include?(true)
+    end
+
+
 
 end
