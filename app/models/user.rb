@@ -52,4 +52,10 @@ class User < ActiveRecord::Base
       self.email
     end
 
+
+    def associated_users
+      User.select(:id, :email).joins(:roles).where("event_user_roles.event_id IN (?) AND event_user_roles.user_id != ?", event_ids, self.id)
+    end
+
+
 end
