@@ -9,10 +9,10 @@
       </div>
       <div class="media-body">
         <h4 class="media-heading">
-          <%= message.sender.email %> <br>
+          <%= message.sender.full_name %> <small><%=message.sender.email %></small> <br>
           <small><b>Subject: </b><%= message.subject %></small><br>
           <small><b>Date: </b><%=  message.created_at.strftime("%A, %b %d, %Y at %I:%M%p") %></small><br>
-          <small><b>To: </b><%= message.recipients.reject { |u| u.id == message.sender.id }.map(&:email).join(" , ") %></small><br>
+          <small><b>To: </b><%= message.recipients.reject { |u| u.id == message.sender.id }.map(&:full_name).join(" , ") %></small><br>
         </h4>
         <br>
         <%= message.body %>
