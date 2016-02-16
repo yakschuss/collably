@@ -15,6 +15,6 @@ class MailboxController < ApplicationController
     @active = :trash
   end
 
-#starred?
+
 
 end
