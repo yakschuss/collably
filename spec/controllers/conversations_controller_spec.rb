@@ -39,12 +39,41 @@ RSpec.describe ConversationsController, type: :controller do
     end
 
     describe 'POST reply' do
+      subject {post :reply, id: conversation.id, message: {body: "test_body"}}
+      it "adds one message to the conversation" do
+        expect {subject}.to change(conversation.messages, :count).by(1)
+      end
+
+      it "redirects to the conversation_path" do
+        subject
+        expected_path = conversation_path(my_user.mailbox.conversations.last.id)
+        expect(response).to redirect_to(expected_path)
+      end
     end
 
     describe 'POST trash' do
+      subject {post :trash, id: conversation.id}
+      it "moves the conversation for my_user to the trash" do
+        subject
+        expect(conversation.is_completely_trashed?(my_user)).to eq(true)
+      end
+
+      it "redirects to user's inbox" do
+        subject
+        expect(response).to redirect_to(mailbox_inbox_path)
+      end
     end
 
     describe 'POST untrash' do
+      subject {post :untrash, id: conversation.id}
+      it "removes the conversation from the trash for my_user" do
+        subject
+        expect(conversation.is_completely_trashed?(my_user)).to eq(false)
+      end
+      it "redirects to user's inbox" do
+        subject
+        expect(response).to redirect_to(mailbox_inbox_path)
+      end
     end
   end
 end
