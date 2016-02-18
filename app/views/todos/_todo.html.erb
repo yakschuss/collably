@@ -1,0 +1,9 @@
+<%= content_tag :div, class: 'media', id: "todo-#{todo.id}" do %>
+    <div class="delete-todo col-lg-1">
+        <%= link_to "", event_todo_path({event_id: @event.id, id: todo.id}), method: :delete, class: 'glyphicon glyphicon-ok' %>
+    </div>
+        <div class="todo-name col-lg-2">
+            <%= todo.name %>
+        </div>
+    </li>
+<% end %>

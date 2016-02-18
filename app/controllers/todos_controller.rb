@@ -1,32 +1,33 @@
 class TodosController < ApplicationController
 
   def create
-    @event = Event.find(params[:id])
-    @item = @event.items.create!(item_params)
+    @event = Event.find(params[:event_id])
+    @todo = @event.todos.create!(todo_params)
 
-    if @item.save
-      flash[:notice] = "Your item was saved correctly"
+    if @todo.save
+      flash[:notice] = "Your todo was saved correctly"
     else
       flash[:error] = "oops, something didn't work there."
     end
-
+    redirect_to @event
   end
 
   def destroy
-    @event = Event.find(params[:id])
-    @item = @event.items.find(params[:id])
+    @event = Event.find(params[:event_id])
+    @todo = @event.todos.find(params[:id])
 
-    if @item.destroy
+    if @todo.destroy
       flash[:notice] = "Done!"
     else
       flash[:error] = "woops, try again"
     end
+    redirect_to @event
   end
 
 
   private
 
-  def item_params
-    params.require(:item).permit(:name)
+  def todo_params
+    params.require(:todo).permit(:name)
   end
 end
