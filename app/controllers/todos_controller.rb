@@ -3,13 +3,19 @@ class TodosController < ApplicationController
   def create
     @event = Event.find(params[:event_id])
     @todo = @event.todos.create!(todo_params)
-
+    @new_todo = Todo.new
     if @todo.save
       flash[:notice] = "Your todo was saved correctly"
     else
       flash[:error] = "oops, something didn't work there."
     end
-    redirect_to @event
+
+
+    respond_to do |format|
+       format.html
+       format.js
+     end
+
   end
 
   def destroy
@@ -21,7 +27,13 @@ class TodosController < ApplicationController
     else
       flash[:error] = "woops, try again"
     end
-    redirect_to @event
+
+
+    respond_to do |format|
+       format.html
+       format.js
+     end
+
   end
 
 

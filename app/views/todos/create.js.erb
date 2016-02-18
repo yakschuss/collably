@@ -1,0 +1,2 @@
+$('.js-todos').prepend("<%= escape_javascript(render partial: 'todos/todo', locals: {todo: @todo}) %>");
+$('.new-todo').html("<%= escape_javascript(render partial: 'todos/form', locals: {event: @event, todo: @new_todo}) %>");
