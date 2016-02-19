@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160218224208) do
+ActiveRecord::Schema.define(version: 20160219023718) do
+
+  create_table "event_user_conversations", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "event_id"
+    t.integer  "conversation_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "event_user_conversations", ["event_id"], name: "index_event_user_conversations_on_event_id"
+  add_index "event_user_conversations", ["user_id"], name: "index_event_user_conversations_on_user_id"
 
   create_table "event_user_roles", force: :cascade do |t|
     t.integer  "user_id"
