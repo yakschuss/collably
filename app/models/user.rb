@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
 
     has_many :roles, class_name: "EventUserRole"
     has_many :events, through: :roles
+    has_many :conversations, class_name: "EventUserConversation"
 
     acts_as_messageable
 
