@@ -1,7 +1,8 @@
 class Event < ActiveRecord::Base
   has_many :roles, class_name: "EventUserRole"
   has_many :users, through: :roles
-
+  has_many :todos
+  
   validates :title, length: {minimum: 5}, presence: true
 
 

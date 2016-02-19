@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160212175511) do
+ActiveRecord::Schema.define(version: 20160218224208) do
 
   create_table "event_user_roles", force: :cascade do |t|
     t.integer  "user_id"
@@ -96,6 +96,15 @@ ActiveRecord::Schema.define(version: 20160212175511) do
 
   add_index "mailboxer_receipts", ["notification_id"], name: "index_mailboxer_receipts_on_notification_id"
   add_index "mailboxer_receipts", ["receiver_id", "receiver_type"], name: "index_mailboxer_receipts_on_receiver_id_and_receiver_type"
+
+  create_table "todos", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "event_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "todos", ["event_id"], name: "index_todos_on_event_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

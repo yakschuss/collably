@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: {registrations: 'registrations'}
   resources :events do
+    resources :todos, only: [:create, :destroy]
     member do
       post :invite_user, as: "invite_user"
       post :update_user, as: "update_user"
