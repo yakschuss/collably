@@ -2,7 +2,8 @@ class Event < ActiveRecord::Base
   has_many :roles, class_name: "EventUserRole"
   has_many :users, through: :roles
   has_many :todos
-  
+  has_many :conversations, class_name: "EventUserConversation"
+
   validates :title, length: {minimum: 5}, presence: true
 
 
