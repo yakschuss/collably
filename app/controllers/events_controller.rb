@@ -62,11 +62,22 @@ class EventsController < ApplicationController
 
   end
 
+  def send_message
+    @event = Event.find(params[:id])
+    recipients = User.where(id: conversation_params[:recipients])
+    body = conversation_params[:body]
+    subject = conversation_params[:subject]
+    EventUserConversation.send_message(@event, current_user, recipients, body, subject)
+  end
 
     private
 
       def event_params
         params.require(:event).permit(:title)
+      end
+
+      def conversation_params
+        params.require(:conversation).permit(:subject, :body, recipients: [])
       end
 
       def assign_owner
