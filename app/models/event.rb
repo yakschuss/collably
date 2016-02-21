@@ -39,5 +39,11 @@ Rails.logger.info "#{e.inspect}"
     event.users.references(:roles).where(event_user_roles: {role: role})
   end
 
+  def all_messages(event)
+    event.users.each do |u|
+      e = u.mailbox.conversations.where(id: EventUserConversation.event_messages(event))
+      return e
+     end
+  end
 
 end
