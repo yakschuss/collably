@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :events do
     resources :todos, only: [:create, :destroy]
     member do
+      post :send_message, as: "send_message"
       post :invite_user, as: "invite_user"
       post :update_user, as: "update_user"
     end
