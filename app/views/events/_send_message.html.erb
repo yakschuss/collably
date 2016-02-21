@@ -1,4 +1,4 @@
-<%= form_for :conversation, url: :conversations, html: { class: "" } do |f| %>
+<%= form_for :conversation, url: {controller: "events", action: "send_message", id: event.id}, html: { class: "" } do |f| %>
     <div class="form-group">
       <%= f.label :recipients %>
       <%= f.select(:recipients, current_user.associated_users.collect {|p| [p.email, p.id ] }, {}, {multiple: true, class: "chosen-select form-control"}) %>
@@ -11,12 +11,12 @@
         <%= f.label :message %>
         <%= f.text_area :body, class: 'form-control', placeholder: "Type your message here", rows: 4 %>
     </div>
-<!--
+
     <div class="form-group">
-        <%= f.label :event_message? %>
-        <%= f.check_box :event_message %>
+        <%= f.label :event %>
+        <%= f.select(:event, current_user.events.collect {|p| [p.title, p.id]}, {}, {multiple: false, class: "chosen-select form-control"}) %>
     </div>
--->
+
     <%= f.submit "Send Message", class: "btn btn-success" %>
 
 <% end %>

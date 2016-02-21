@@ -67,7 +67,13 @@ class EventsController < ApplicationController
     recipients = User.where(id: conversation_params[:recipients])
     body = conversation_params[:body]
     subject = conversation_params[:subject]
-    EventUserConversation.send_message(@event, current_user, recipients, body, subject)
+    if EventUserConversation.send_message(@event, current_user, recipients, body, subject)
+      flash[:notice] = "Your message was posted successfully"
+      redirect_to @event
+    else
+      flash.now[:error] = "There was a problem. Try again?"
+      render :send_message
+    end
   end
 
     private
