@@ -4,8 +4,8 @@ class ConversationsController < ApplicationController
   end
 
   def create
-    if params[:event_message] == true
-      redirect_to(send_message_event_path, )
+    if params["event_message"] == "1"
+      redirect_to send_message_event_path(params[:conversation_params])
     else
       recipients = User.where(id: conversation_params[:recipients])
       conversation = current_user.send_message(recipients, conversation_params[:body], conversation_params[:subject]).conversation
