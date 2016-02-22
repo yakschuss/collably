@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
 
   before_action :authenticate_user!, only: [:new, :create, :show]
-  before_action :authorize_user, only: [:update_user, :invite_user]
+  before_action :authorize_user, only: [:update_user, :invite_user, :send_message, :trash_message]
   after_action :assign_owner, only: [:create]
 
   def new
@@ -33,7 +33,7 @@ class EventsController < ApplicationController
   def invite_user
     @event = Event.find(params[:id])
 
-
+# TODO
   #Need to validate uniqueness of user-event before running invite_the_user - right now, event_user_role - validate uniqueness of user_id throws a "That person isn't in the app error!"
   #would refactor if statement
     if @event.invite_the_user(params[:users][:email], @event)
@@ -105,8 +105,7 @@ class EventsController < ApplicationController
 
       def authorize_user
         @event = Event.find(params[:id])
-        @admins = @event.all_user_roles(@event.id, "1")
-          unless @admins.find { | user | user.id == current_user.id }
+          unless @event.admin?(current_user)
             flash[:error] = "You must be an admin to do that."
             redirect_to @event
           end

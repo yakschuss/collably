@@ -8,10 +8,8 @@
             <% end %>
     </div>
     <div class="col-md-4 text-right">
-        <% if conversation.is_trashed?(current_user) %>
-            <%= link_to 'view trashed conversation', conversation_path(conversation) %>
-        <% else %>
-            <%= link_to 'Move to trash', delete_message_conversation_path(conversation), class: 'btn btn-danger', method: :post, data: {confirm: 'Are you sure?'} %>
+        <% if event.admin?(current_user) %>
+            <%= link_to 'Delete', delete_message_conversation_path(conversation), class: 'btn btn-danger', method: :post, data: {confirm: 'Are you sure?'} %>
         <% end %>
     </div>
 <div class="media">
@@ -25,7 +23,7 @@
       <%= conversation.originator.full_name %> <small><%=conversation.originator.email %></small> <br>
       <small><b>Subject: </b><%= conversation.subject %></small><br>
       <small><b>Date: </b><%=  conversation.messages.last.created_at.strftime("%A, %b %d, %Y at %I:%M%p") %></small><br>
-      <small><b>To: </b><%= conversation.participants.reject {|u| u.id == conversation.originator.id }.map(&:full_name).join(" , ") %></small>
+      <small><b>To: </b> everybody </small>
     </h4>
     <%= truncate conversation.messages.last.body, length: 145 %>
     <%= link_to "View", conversation_path(conversation)  %>

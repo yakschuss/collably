@@ -37,7 +37,7 @@
 <div class="form-group">
   <div class="form">
     <div class="col-md-4">
-      <% if current_user.event_role(@event.id) == "admin" %>
+      <% if @event.admin?(current_user) %>
       <%= render partial: "users/form", locals: {event: @event} %>
       <% end %>
     </div>
@@ -56,7 +56,9 @@
 
 <div class="form-group">
   <div class="col-xs-4">
+    <% if @event.admin?(current_user) %>
       <%= render partial: "events/send_message", locals: {event: @event} %>
+    <% end %>
   </div>
 </div>
 
