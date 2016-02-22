@@ -12,12 +12,6 @@
         <%= f.label :message %>
         <%= f.text_area :body, class: 'form-control', placeholder: "Type your message here", rows: 4 %>
     </div>
-<!--
-    <div class="form-group">
-        <%= f.label :event %>
-        <%= f.select(:event, current_user.events.collect {|p| [p.title, p.id]}, {}, {multiple: false, class: "chosen-select form-control"}) %>
-    </div>
--->
     <%= f.submit "Send Message", class: "btn btn-success" %>
 
 <% end %>

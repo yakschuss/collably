@@ -77,7 +77,6 @@ class EventsController < ApplicationController
   end
 
   def delete_message
-    Rails.logger.info "2049710597123-05698123-09681-30681-06821-#{conversation.participants.inspect}"
       conversation.participants.each do |participant|
         conversation.mark_as_deleted(participant)
       end
