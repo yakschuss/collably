@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
   resources :conversations do
     member do
+      post :delete_message, controller: "events"
       post :reply
       post :trash
       post :untrash

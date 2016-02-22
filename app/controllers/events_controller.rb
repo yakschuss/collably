@@ -76,6 +76,14 @@ class EventsController < ApplicationController
     end
   end
 
+  def delete_message
+    Rails.logger.info "2049710597123-05698123-09681-30681-06821-#{conversation.participants.inspect}"
+      conversation.participants.each do |participant|
+        conversation.mark_as_deleted(participant)
+      end
+    redirect_to :back
+  end
+
     private
 
       def event_params
@@ -98,9 +106,9 @@ class EventsController < ApplicationController
       def authorize_user
         @event = Event.find(params[:id])
         @admins = @event.all_user_roles(@event.id, "1")
-        unless @admins.find { | user | user.id == current_user.id }
-          flash[:error] = "You must be an admin to do that."
-          redirect_to @event
-        end
+          unless @admins.find { | user | user.id == current_user.id }
+            flash[:error] = "You must be an admin to do that."
+            redirect_to @event
+          end
       end
 end

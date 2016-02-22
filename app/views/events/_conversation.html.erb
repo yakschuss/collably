@@ -1,4 +1,19 @@
 <% event.all_messages(event).each do |conversation| %>
+  <div class="col-md-4 media-right">
+            <%= form_for :message, url: reply_conversation_path(conversation) do |f| %>
+        <div class="form-group">
+            <%= f.text_area :body, placeholder: "Reply", rows: 2, class: "form-control" %>
+        </div>
+            <%= f.submit "Reply", class: "btn btn-info" %>
+            <% end %>
+    </div>
+    <div class="col-md-4 text-right">
+        <% if conversation.is_trashed?(current_user) %>
+            <%= link_to 'view trashed conversation', conversation_path(conversation) %>
+        <% else %>
+            <%= link_to 'Move to trash', delete_message_conversation_path(conversation), class: 'btn btn-danger', method: :post, data: {confirm: 'Are you sure?'} %>
+        <% end %>
+    </div>
 <div class="media">
   <div class="media-left">
     <a href="#">
