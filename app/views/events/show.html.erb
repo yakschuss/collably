@@ -55,7 +55,13 @@
 </div>
 
 <div class="form-group">
-  <div class="col-xs-6">
+  <div class="col-xs-4">
       <%= render partial: "events/send_message", locals: {event: @event} %>
+  </div>
+</div>
+
+<div class="form-group">
+  <div class="col-xs-6">
+      <%= render partial: "events/conversation", locals: {event: @event} %>
   </div>
 </div>

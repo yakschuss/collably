@@ -1,7 +1,8 @@
 <%= form_for :conversation, url: {controller: "events", action: "send_message", id: event.id}, html: { class: "" } do |f| %>
     <div class="form-group">
-      <%= f.label :recipients %>
-      <%= f.select(:recipients, current_user.associated_users.collect {|p| [p.email, p.id ] }, {}, {multiple: true, class: "chosen-select form-control"}) %>
+        <% event.users.reject { |u| u.id == current_user.id }.each do |user| %>
+        <%= f.hidden_field :recipients, multiple: true, value: user.id %>
+        <% end %>
     </div>
     <div class="form-group">
         <%= f.label :subject %>
@@ -11,12 +12,12 @@
         <%= f.label :message %>
         <%= f.text_area :body, class: 'form-control', placeholder: "Type your message here", rows: 4 %>
     </div>
-
+<!--
     <div class="form-group">
         <%= f.label :event %>
         <%= f.select(:event, current_user.events.collect {|p| [p.title, p.id]}, {}, {multiple: false, class: "chosen-select form-control"}) %>
     </div>
-
+-->
     <%= f.submit "Send Message", class: "btn btn-success" %>
 
 <% end %>
