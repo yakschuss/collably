@@ -46,4 +46,9 @@ Rails.logger.info "#{e.inspect}"
      end
   end
 
+  def admin?(user)
+    query = EventUserRole.where(event_id: self.id, user_id: user.id).take
+    query.role == "admin" ? true : false
+  end
+
 end
