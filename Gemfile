@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 #trying stuff
 gem 'frontend-generators'
+gem 'bootswatch-rails'
 #allow users to be authenticated and confirmed
 gem 'devise'
 gem 'devise_invitable'
