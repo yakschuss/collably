@@ -1,11 +1,17 @@
-<div class="col-md-8">
-  <h1>
-    <%= @event.title %><br>
-    <small>
-      submitted <%= time_ago_in_words(@event.created_at) %> ago by <%= @event.users.first.first_name %>
-    </small>
-  </h1>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-4">
+      <h1>
+        <%= @event.title %><br>
+        <small>
+          submitted <%= time_ago_in_words(@event.created_at) %> ago by <%= @event.users.first.first_name %>
+        </small>
+      </h1>
+    </div>
+
+  </div>
 </div>
+
 
 <br>
 <div class="media">
