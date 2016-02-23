@@ -4,7 +4,6 @@
 @import "bootswatch/flatly/bootswatch";
 @import "font_awesome" ;
 @import "animate.min.css";
-@import "creative" ;
 @import "conversations";
 @import "events";
 @import "mailbox";
@@ -12,7 +11,16 @@
 @import "todos";
 @import "users";
 @import "welcome";
+@import "navbar";
 
 .user-info {
     margin-top: 9px;
+}
+
+.dash-nav {
+    background-color: #545860;
+}
+
+body {
+    padding-top: 65px;
 }

@@ -12,3 +12,9 @@
   border-radius: 50px;
   overflow:visible;
 }
+
+/* get rid of after adding container-fluid to the correct view, as 15px is automatically added?*/
+body {
+  padding-left: 65px;
+  padding-right: 65px;
+}

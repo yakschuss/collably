@@ -17,3 +17,6 @@
 //= require bootstrap
 //= require_tree ./creative
 //= require_tree .
+
+$(document).ready(ready);
+$(document).on('page:load', ready);
