@@ -1,0 +1,18 @@
+@import "bootstrap-sprockets";
+@import "bootswatch/flatly/variables";
+@import "bootstrap";
+@import "bootswatch/flatly/bootswatch";
+@import "font_awesome" ;
+@import "animate.min.css";
+@import "creative" ;
+@import "conversations";
+@import "events";
+@import "mailbox";
+@import "registrations";
+@import "todos";
+@import "users";
+@import "welcome";
+
+.user-info {
+    margin-top: 9px;
+}
