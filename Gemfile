@@ -13,8 +13,9 @@ gem 'figaro', '1.0'
 # Use SCSS for stylesheets
 
 #assets
-gem 'sass-rails', '~> 5.0'
-gem 'bootstrap-sass'
+gem 'bootstrap-sass', '~> 3.3.6'
+gem 'sass-rails', '>= 3.2'
+
 gem 'frontend-generators'
 gem 'bootswatch-rails'
 # Use Uglifier as compressor for JavaScript assets

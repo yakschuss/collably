@@ -14,9 +14,9 @@
 //= require jquery_ujs
 //= require chosen-jquery
 //= require turbolinks
-//= require bootstrap
+//= require bootstrap-collapse
 
-//= require bootstrap-sprockets
+//= require bootstrap
 //= require collably
 
 $(document).ready(ready);
