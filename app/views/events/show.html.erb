@@ -14,34 +14,7 @@
 
 
 <br>
-<div class="container">
-    <div class="media">
-      <div class="media-body">
-        <div class="col-md-12">
-          <h3>Admins</h3>
-              <% @admins.each do |user| %>
-                <%= render partial: "users/user", locals: {user: user} %>
-              <% end %>
-        </div>
-      </div>
-    <div class="media-body">
-      <div class="col-md-12">
-        <h3>Members</h3>
-            <% @members.each do |user| %>
-              <%= render partial: "users/user", locals: {user: user} %>
-            <% end %>
-      </div>
-    </div>
-    <div class="media-body">
-      <div class="col-md-12">
-        <h3>Invited</h3>
-            <% @invited.each do |user| %>
-              <%= render partial: "users/user", locals: {user: user} %>
-            <% end %>
-      </div>
-    </div>
-  </div>
-</div>
+<%= render partial: 'member' %>
 <div class="form-group">
   <div class="form">
     <div class="col-md-4">

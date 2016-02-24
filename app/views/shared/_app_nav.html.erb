@@ -15,7 +15,9 @@
       <% if current_user %>
               <% if current_user.unread_messages? %>
             <li>
-              <%= link_to "Inbox (#{unread_messages_count})", mailbox_inbox_path %>
+              <%= link_to mailbox_inbox_path do %>
+                <p>Inbox <span class="badge"> <%= "#{unread_messages_count}"%></span></p>
+              <% end %>
             </li>
               <% else %>
             <li>
