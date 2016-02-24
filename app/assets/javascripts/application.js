@@ -15,8 +15,9 @@
 //= require chosen-jquery
 //= require turbolinks
 //= require bootstrap
-//= require_tree ./creative
-//= require_tree .
+
+//= require bootstrap-sprockets
+//= require collably
 
 $(document).ready(ready);
 $(document).on('page:load', ready);

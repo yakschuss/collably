@@ -1,8 +1,5 @@
 source 'https://rubygems.org'
 
-#trying stuff
-gem 'frontend-generators'
-gem 'bootswatch-rails'
 #allow users to be authenticated and confirmed
 gem 'devise'
 gem 'devise_invitable'
@@ -11,10 +8,15 @@ gem 'rails', '4.2.4'
 # Use sqlite3 as the database for Active Record
 gem 'mailboxer'
 gem 'chosen-rails'
-# Use SCSS for stylesheets
+#store ENV variables
 gem 'figaro', '1.0'
+# Use SCSS for stylesheets
 
+#assets
 gem 'sass-rails', '~> 5.0'
+gem 'bootstrap-sass'
+gem 'frontend-generators'
+gem 'bootswatch-rails'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
@@ -64,5 +66,3 @@ group :production do
   gem 'pg'
   gem 'rails_12factor'
 end
-
-gem 'bootstrap-sass'
