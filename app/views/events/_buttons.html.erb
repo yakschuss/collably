@@ -1,0 +1,47 @@
+<div class="btn-group-vertical">
+<% if @event.admin?(current_user) %>
+    <div>
+      <h4>
+          <a class="btn btn-success" role="button" data-toggle="collapse" href="#collapseConversation">
+            New Conversation
+          </a>
+        </h4>
+      <div id="collapseConversation" class="collapse">
+          <%= render partial: "events/send_message", locals: {event: @event} %>
+          <div class="space"></div>
+      </div>
+
+    </div>
+<% end %>
+
+
+
+<div class="btn-group btn-group-justified">
+      <div>
+            <a class="btn btn-default" role="" data-toggle="collapse" href="#collapseTodos">
+              Todos
+            </a>
+        <div id="collapseTodos" class="collapse">
+          <div class="js-todos pull-left">
+            <ul class="list-group">
+            </br>
+              <% @event.todos.each do |todo| %>
+              <%= render partial: 'todos/todo', locals: {event: @event, todo: todo} %>
+              <% end %>
+            </ul>
+            </div>
+          </div>
+       </div>
+        <div>
+          <h4>
+              <a class="btn btn-default" role="button" data-toggle="collapse" href="#collapseNewTask">
+                New Todo
+              </a>
+            </h4>
+          <div id="collapseNewTask" class="collapse">
+            <%= render partial: "todos/form", locals: {event: @event, todo: Todo.new} %>
+          </div>
+        </div>
+     </div>
+
+</div>

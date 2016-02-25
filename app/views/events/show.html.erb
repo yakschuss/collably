@@ -1,6 +1,6 @@
-<div class="container-fluid col-lg-12">
+<div class="container">
   <div class="row spacer">
-    <div class="col-lg-4 col-md-4 pull-right clearfix offset">
+    <div class="col-lg-4 col-md-4 pull-right">
       <h1>
         <%= @event.title %><br>
         <small>
@@ -8,8 +8,19 @@
         </small>
       </h1>
     </div>
-    <div class="col-lg-4">
+    <div class="col-lg-4 col-md-2 col-sm-1">
       <%= render partial: 'member' %>
+    </div>
+  </div>
+</div>
+</div>
+<div class="container">
+  <div class="row spacer">
+    <div class="col-lg-4 col-md-2">
+      <%= render partial: "buttons" %>
+    </div>
+    <div class="col-lg-8 col-md-4 pull-right">
+      <%= render partial: "events/conversation" , locals: {event: @event} %>
     </div>
   </div>
 </div>

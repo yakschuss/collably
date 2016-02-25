@@ -1,8 +1,8 @@
-<%= content_tag :div, class: 'media', id: "todo-#{todo.id}" do %>
-    <div class="delete-todo col-lg-1">
+<%= content_tag :li, class: "list-group-item", id: "todo-#{todo.id}" do %>
+    <span class=" badge delete-todo">
         <%= link_to "", event_todo_path({event_id: @event.id, id: todo.id}),remote: true,  method: :delete, class: 'glyphicon glyphicon-ok' %>
-    </div>
-        <div class="todo-name col-lg-2">
+    </span>
+        <div class="todo-name">
             <%= todo.name %>
         </div>
     </li>

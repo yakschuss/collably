@@ -49,6 +49,7 @@
           </div>
         </div>
       </div>
+      <% if @event.admin?(current_user) %>
       <div class="list-group">
           <h4>
             <a class="btn btn-color" role="button" data-toggle="collapse"  data-parent="#accordion" href="#collapseFour">
@@ -57,7 +58,8 @@
           </h4>
         </div>
         <div id="collapseFour" class="collapse">
-            <%= render partial: 'new_user' %>
+          <%= render partial: "users/form", locals: {event: @event} %>
           </div>
         </div>
       </div>
+      <% end %>

@@ -10,11 +10,9 @@
   <%= csrf_meta_tags %>
 </head>
   <body>
-    <div class="container">
     <%= render 'shared/app_nav' unless @disable_nav %>
     <%= render 'shared/flash' unless @disable_nav %>
         <%= yield %>
-      </div>
     </div>
   </body>
 </html>

@@ -4,6 +4,7 @@
 
 .spacer {
     margin-top: 40px;
+    margin-bottom: 40px;
 }
 
 .spacer-xl {
@@ -29,4 +30,17 @@
     background-color: #bbb193;
     border-color: #bbb193;
     color: #fff;
+}
+.conversation-links{
+    word-spacing: 0.5em;
+}
+.user-links-danger{
+    color: rgb(250, 247, 0);
+}
+.to-the-right{
+    padding-left: 50%;
+}
+
+.width-define-collapse-reply{
+    width:10%;
 }
