@@ -1,0 +1,9 @@
+<div class="form-group">
+  <div class="form">
+    <div class="col-md-4">
+      <% if @event.admin?(current_user) %>
+      <%= render partial: "users/form", locals: {event: @event} %>
+      <% end %>
+    </div>
+  </div>
+</div>

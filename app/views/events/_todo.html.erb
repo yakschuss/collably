@@ -1,0 +1,10 @@
+<div class="new-todo">
+    <%= render partial: "todos/form", locals: {event: @event, todo: Todo.new} %>
+</div>
+<div class="media js-todos">
+  <ul class="list-group">
+    <% @event.todos.each do |todo| %>
+    <%= render partial: 'todos/todo', locals: {event: @event, todo: todo} %>
+    <% end %>
+  </ul>
+</div>

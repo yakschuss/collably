@@ -1,6 +1,6 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-md-4 clearfix offset">
+<div class="container-fluid col-lg-12">
+  <div class="row spacer">
+    <div class="col-lg-4 col-md-4 clearfix offset">
       <h1>
         <%= @event.title %><br>
         <small>
@@ -8,43 +8,21 @@
         </small>
       </h1>
     </div>
-
+      <div class="col-lg-4 pull-right">
+        <%= render partial: 'new_user' %>
+      </div>
+      <div class="col-lg-4 pull-right">
+        <%= render partial: 'member' %>
+      </div>
   </div>
 </div>
 
-
-<br>
-<%= render partial: 'member' %>
-<div class="form-group">
-  <div class="form">
-    <div class="col-md-4">
-      <% if @event.admin?(current_user) %>
-      <%= render partial: "users/form", locals: {event: @event} %>
-      <% end %>
+<div class="container-fluid">
+  <div class="row spacer-xl">
+    <div class="col-lg-12">
+      <%= render partial: "todo" %>
     </div>
   </div>
 </div>
-<div class="new-todo">
-    <%= render partial: "todos/form", locals: {event: @event, todo: Todo.new} %>
-</div>
-<div class="media js-todos">
-  <ul class="list-group">
-    <% @event.todos.each do |todo| %>
-    <%= render partial: 'todos/todo', locals: {event: @event, todo: todo} %>
-    <% end %>
-  </ul>
-</div>
 
-<div class="form-group">
-  <div class="col-xs-4">
-    <% if @event.admin?(current_user) %>
-      <%= render partial: "events/send_message", locals: {event: @event} %>
-    <% end %>
-  </div>
-</div>
-
-<div class="form-group">
-  <div class="col-xs-6">
-      <%= render partial: "events/conversation", locals: {event: @event} %>
-  </div>
-</div>
+<%= render partial: "rp_cv" %>
