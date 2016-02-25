@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
 
   before_action :authenticate_user!, only: [:new, :create, :show]
-  before_action :authorize_user, only: [:update_user, :invite_user, :send_message, :trash_message]
+  before_action :authorize_user, only: [:update_user, :invite_user, :send_message, :delete_message]
   after_action :assign_owner, only: [:create]
 
   def new

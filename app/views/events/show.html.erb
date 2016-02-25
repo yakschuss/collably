@@ -1,6 +1,10 @@
 <div class="container">
   <div class="row spacer">
-    <div class="col-lg-4 col-md-4 pull-right">
+
+    <div class="col-lg-2 col-md-2 col-sm-1">
+      <%= render partial: 'member' %>
+    </div>
+    <div class="col-lg-10 col-md-4 to-the-right">
       <h1>
         <%= @event.title %><br>
         <small>
@@ -8,19 +12,16 @@
         </small>
       </h1>
     </div>
-    <div class="col-lg-4 col-md-2 col-sm-1">
-      <%= render partial: 'member' %>
-    </div>
   </div>
-</div>
-</div>
-<div class="container">
-  <div class="row spacer">
+
+
+  <div class="row">
     <div class="col-lg-4 col-md-2">
       <%= render partial: "buttons" %>
     </div>
-    <div class="col-lg-8 col-md-4 pull-right">
+    <div class="col-lg-8 col-md-4">
       <%= render partial: "events/conversation" , locals: {event: @event} %>
     </div>
   </div>
+
 </div>

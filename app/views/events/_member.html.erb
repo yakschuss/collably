@@ -1,6 +1,5 @@
-<div class="container">
-  <div class="row">
-    <div class="list-group col-lg-2" id="accordion" role="tablist" aria-multiselectable="true">
+
+    <div class="list-group" id="accordion" role="tablist" aria-multiselectable="true">
       <div class="panel panel-primary panel-horizontal">
         <div class="panel-heading" role="tab" id="headingOne">
           <h4 class="panel-title">
@@ -49,7 +48,7 @@
           </div>
         </div>
       </div>
-      <% if @event.admin?(current_user) %>
+
       <div class="list-group">
           <h4>
             <a class="btn btn-color" role="button" data-toggle="collapse"  data-parent="#accordion" href="#collapseFour">
@@ -61,5 +60,3 @@
           <%= render partial: "users/form", locals: {event: @event} %>
           </div>
         </div>
-      </div>
-      <% end %>
