@@ -9,7 +9,7 @@
             </a>
           </h4>
         </div>
-        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel">
+        <div id="collapseOne" class="panel-collapse collapse" role="tabpanel">
           <div class="list-group">
             <% @admins.each do |user| %>
               <%= render partial: "users/user", locals: {user: user} %>
@@ -49,6 +49,15 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
+      <div class="list-group">
+          <h4>
+            <a class="btn btn-default" role="button" data-toggle="collapse"  data-parent="#accordion" href="#collapseFour">
+              Add New
+            </a>
+          </h4>
+        </div>
+        <div id="collapseFour" class="collapse">
+            <%= render partial: 'new_user' %>
+          </div>
+        </div>
+      </div>
