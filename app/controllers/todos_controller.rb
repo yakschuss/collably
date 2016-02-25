@@ -4,11 +4,11 @@ class TodosController < ApplicationController
     @event = Event.find(params[:event_id])
     @todo = @event.todos.create!(todo_params)
     @new_todo = Todo.new
-    
+
     if @todo.save
-      flash[:notice] = "Your todo was saved correctly"
+      flash.now[:notice] = "Your todo was saved correctly"
     else
-      flash[:error] = "oops, something didn't work there."
+      flash.now[:error] = "oops, something didn't work there."
     end
 
 
@@ -25,7 +25,7 @@ class TodosController < ApplicationController
 
     if @todo.destroy
     else
-      flash[:error] = "woops, try again"
+      flash.now[:error] = "woops, try again"
     end
 
 

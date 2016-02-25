@@ -1,32 +1,34 @@
-<% event.all_messages(event).each do |conversation| %>
-  <div class="col-md-4 media-right">
-            <%= form_for :message, url: reply_conversation_path(conversation) do |f| %>
-        <div class="form-group">
-            <%= f.text_area :body, placeholder: "Reply", rows: 2, class: "form-control" %>
-        </div>
-            <%= f.submit "Reply", class: "btn btn-info" %>
-            <% end %>
-    </div>
-    <div class="col-md-4 text-right">
+  <% event.all_messages(event).each do |conversation| %>
+    <div class="media to-the-right">
+      <div class="media-left">
+        <a href="#">
+          <img class="media-object" src="http://placehold.it/64x64" alt="...">
+        </a>
+      </div>
+      <div class="media-body">
+        <h4 class="media-heading">
+          <b>Subject: </b><%= conversation.subject %> <br>
+          <small><b>Date: </b><%=  conversation.messages.last.created_at.strftime("%A, %b %d, %Y at %I:%M%p") %></small><br>
+          <small><b>To: </b><%= event.users.pluck("first_name").join(" , ") %> </small>
+        </h4>
+        <div class="conversation-links">
+        <%= truncate conversation.messages.last.body, length: 145 %>
+        <%= link_to "View", conversation_path(conversation)  %>
         <% if event.admin?(current_user) %>
-            <%= link_to 'Delete', delete_message_conversation_path(conversation), class: 'btn btn-danger', method: :post, data: {confirm: 'Are you sure?'} %>
+            <%= link_to 'Delete', delete_message_conversation_path(conversation), class: "user-links-danger", method: :post, data: {confirm: 'Are you sure?'} %>
         <% end %>
+              <a class="btn btn-primary btn-xs" role="button" data-toggle="collapse" href="#collapseReply<%="#{conversation.id}"%>">
+                Reply
+              </a>
+          <div id="collapseReply<%="#{conversation.id}"%>" class="collapse">
+            <%= form_for :message, class: "form-group", url: reply_conversation_path(conversation) do |f| %>
+            <%= f.text_area :body, placeholder: "Reply", rows: 2, class: "form-control" %>
+             <div class="space">
+            <%= f.submit "Reply", class: "btn btn-danger btn-xs" %>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
     </div>
-<div class="media">
-  <div class="media-left">
-    <a href="#">
-      <img class="media-object" src="http://placehold.it/64x64" alt="...">
-    </a>
-  </div>
-  <div class="media-body">
-    <h4 class="media-heading">
-      <%= conversation.originator.full_name %> <small><%=conversation.originator.email %></small> <br>
-      <small><b>Subject: </b><%= conversation.subject %></small><br>
-      <small><b>Date: </b><%=  conversation.messages.last.created_at.strftime("%A, %b %d, %Y at %I:%M%p") %></small><br>
-      <small><b>To: </b> everybody </small>
-    </h4>
-    <%= truncate conversation.messages.last.body, length: 145 %>
-    <%= link_to "View", conversation_path(conversation)  %>
-  </div>
-</div>
 <% end %>

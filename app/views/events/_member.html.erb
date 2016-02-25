@@ -1,0 +1,62 @@
+
+    <div class="list-group" id="accordion" role="tablist" aria-multiselectable="true">
+      <div class="panel panel-primary panel-horizontal">
+        <div class="panel-heading" role="tab" id="headingOne">
+          <h4 class="panel-title">
+            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+              Admins
+            </a>
+          </h4>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse" role="tabpanel">
+          <div class="list-group">
+            <% @admins.each do |user| %>
+              <%= render partial: "users/user", locals: {user: user} %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-primary panel-horizontal">
+        <div class="panel-heading" role="tab" id="headingTwo">
+          <h4 class="panel-title">
+            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+              Members
+            </a>
+          </h4>
+        </div>
+        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel">
+          <div class="list-group">
+            <% @members.each do |user| %>
+              <%= render partial: "users/user", locals: {user: user} %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-primary panel-horizontal">
+        <div class="panel-heading" role="tab" id="headingThree">
+          <h4 class="panel-title">
+            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+              Invited
+            </a>
+          </h4>
+        </div>
+        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel">
+          <div class="list-group">
+            <% @invited.each do |user| %>
+              <%= render partial: "users/user", locals: {user: user} %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <div class="list-group">
+          <h4>
+            <a class="btn btn-color" role="button" data-toggle="collapse"  data-parent="#accordion" href="#collapseFour">
+              Add New
+            </a>
+          </h4>
+        </div>
+        <div id="collapseFour" class="collapse">
+          <%= render partial: "users/form", locals: {event: @event} %>
+          </div>
+        </div>

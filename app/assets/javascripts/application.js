@@ -15,4 +15,7 @@
 //= require chosen-jquery
 //= require turbolinks
 //= require bootstrap
-//= require_tree .
+//= require collably
+
+$(document).ready(ready);
+$(document).on('page:load', ready);

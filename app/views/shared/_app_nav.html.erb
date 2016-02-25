@@ -1,0 +1,43 @@
+<div class="navbar navbar-default navbar-fixed-top dash-nav">
+  <div class="container-fluid">
+  <ul class="nav nav-tabs">
+    <div class="nav navbar-nav navbar-left">
+      <li>
+        <%= link_to "Collably", root_path %>
+      </li>
+        <% if current_user %>
+      <li>
+        <%= link_to "#{current_user.first_name}'s Dashboard", user_path(current_user), class: 'navbar-link' %>
+      </li>
+        <% end %>
+    </div>
+    <div class="nav navbar-nav navbar-right">
+      <% if current_user %>
+              <% if current_user.unread_messages? %>
+            <li>
+              <%= link_to mailbox_inbox_path do %>
+                <p>Inbox <span class="badge"> <%= "#{unread_messages_count}"%></span></p>
+              <% end %>
+            </li>
+              <% else %>
+            <li>
+              <%= link_to "Inbox", mailbox_inbox_path %>
+            </li>
+              <% end %>
+        <li>
+           <%= link_to 'Edit profile', edit_user_registration_path, class: 'navbar-link' %>
+        </li>
+        <li>
+          <%= link_to "Logout", destroy_user_session_path, method: :delete, class: 'navbar-link'  %>
+        </li>
+      <% else %>
+        <li>
+          <%= link_to "Sign In", new_user_session_path, class: 'navbar-link'  %>
+        </li>
+        <li>
+          <%= link_to "Sign Up", new_user_registration_path, class: 'navbar-link'  %>
+        </li>
+      <% end %>
+      </ul>
+    </div>
+  </div>

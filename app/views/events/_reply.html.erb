@@ -1,0 +1,6 @@
+<%= form_for :message, class: "form-group", url: reply_conversation_path(conversation) do |f| %>
+<%= f.text_area :body, placeholder: "Reply", rows: 2, class: "form-control" %>
+ <div class="space">
+<%= f.submit "Reply", class: "btn btn-danger btn-xs" %>
+</div>
+<% end %>

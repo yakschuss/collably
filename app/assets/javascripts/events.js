@@ -1,0 +1,1 @@
+$('#collapseOne').collapse("hide");

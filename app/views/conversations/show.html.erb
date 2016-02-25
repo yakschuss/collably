@@ -5,9 +5,9 @@
   </div>
   <div class="col-md-6 text-right">
       <% if conversation.is_trashed?(current_user) %>
-          <%= link_to 'Untrash', untrash_conversation_path(conversation), class: 'btn btn-info', method: :post %>
+          <%= link_to 'Untrash', untrash_conversation_path(conversation), class: 'btn btn-success', method: :post %>
       <% else %>
-          <%= link_to 'Move to trash', trash_conversation_path(conversation), class: 'btn btn-danger', method: :post, data: {confirm: 'Are you sure?'} %>
+          <%= link_to 'Move to trash', trash_conversation_path(conversation), class: 'btn btn-primary', method: :post, data: {confirm: 'Are you sure?'} %>
       <% end %>
   </div>
 
@@ -30,7 +30,7 @@
         <div class="form-group">
             <%= f.text_area :body, placeholder: "Reply Message", rows: 4, class: "form-control" %>
         </div>
-            <%= f.submit "Reply", class: 'btn btn-danger pull-right' %>
+            <%= f.submit "Reply", class: 'btn btn-primary pull-right' %>
             <% end %>
           <div class="clearfix"></div>
       </div>
