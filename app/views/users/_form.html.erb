@@ -2,6 +2,7 @@
     <%= form_for :users, url: invite_user_event_path(@event) do |f| %>
     <%= f.label :email %>
     <%= f.email_field :email, class: "form-control" %>
+    <div class="space"></div>
     <%= f.submit "Add", class: "btn btn-success btn-xs" %>
     <% end %>
 </div>
