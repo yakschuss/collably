@@ -30,7 +30,10 @@
 .conversation-links{
     word-spacing: 0.5em;
 }
-.user-links-danger{
+.conversation-links-danger{
+    color: red;
+}
+.conversation-links-danger:hover{
     color: red;
 }
 .to-the-right{

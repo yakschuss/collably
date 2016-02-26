@@ -20,7 +20,9 @@
       <%= render partial: "buttons" %>
     </div>
     <div class="col-lg-8 col-md-4">
-      <%= render partial: "events/conversation" , locals: {event: @event} %>
+      <% @event.all_messages(@event).each do |conversation| %>
+      <%= render partial: "events/conversation" , locals: {event: @event, conversation: conversation} %>
+      <% end %>
     </div>
   </div>
 

@@ -1,7 +1,8 @@
 class EventsController < ApplicationController
 
   before_action :authenticate_user!, only: [:new, :create, :show]
-  before_action :authorize_user, only: [:update_user, :invite_user, :send_message, :delete_message]
+  before_action :authorize_user, only: [:update_user, :invite_user, :send_message]
+  before_action :authorize_user_conversation, only: [:delete_message]
   after_action :assign_owner, only: [:create]
 
   def new
@@ -104,6 +105,14 @@ class EventsController < ApplicationController
 
       def authorize_user
         @event = Event.find(params[:id])
+          unless @event.admin?(current_user)
+            flash[:error] = "You must be an admin to do that."
+            redirect_to @event
+          end
+      end
+
+      def authorize_user_conversation
+        @event = Event.find(params[:event_id])
           unless @event.admin?(current_user)
             flash[:error] = "You must be an admin to do that."
             redirect_to @event
