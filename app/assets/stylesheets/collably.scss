@@ -1,0 +1,76 @@
+@import "bootstrap-sprockets";
+@import "bootswatch/flatly/variables";
+@import "bootstrap";
+@import "bootswatch/flatly/bootswatch";
+@import "font_awesome" ;
+@import "animate.min.css";
+@import "conversations";
+@import "events";
+@import "mailbox";
+@import "registrations";
+@import "todos";
+@import "users";
+@import "welcome";
+@import "navbar";
+
+.user-info {
+    margin-top: 9px;
+}
+
+.dash-nav {
+    background-color: #2c3e50;
+}
+
+body {
+    padding-top: 65px;
+    background-color: #B0C2D4;
+}
+
+body h1 {
+    color: #2c3e50;
+}
+
+.user-links {
+    color: #545860;
+}
+
+
+.collapse {
+  height: auto;
+  width: auto;
+}
+
+.collapse.height {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  -webkit-transition: height 0.35s ease;
+  -moz-transition: height 0.35s ease;
+  -o-transition: height 0.35s ease;
+  transition: height 0.35s ease;
+}
+
+.collapse.width {
+  position: relative;
+  width: 0;
+  overflow: hidden;
+  -webkit-transition: width 0.35s ease;
+  -moz-transition: width 0.35s ease;
+  -o-transition: width 0.35s ease;
+  transition: width 0.35s ease;
+}
+
+.collapse.in.width {
+  width: auto;
+}
+
+.collapse.in.height {
+  height: auto;
+}
+
+h1 small {
+  color: #545860;
+}
+h4 small {
+  color: #545860;
+}

@@ -1,9 +1,8 @@
-<%= form_for :users, url: invite_user_event_path(@event) do |f| %>
-<div class="field">
-  <%= f.label :email %> <br/>
-  <%= f.email_field :email %>
-</div>
-
-      <%= f.submit "Add New User", class: 'btn btn-success' %>
-
+<div class="form-group">
+    <%= form_for :users, url: invite_user_event_path(@event) do |f| %>
+    <%= f.label :email %>
+    <%= f.email_field :email, class: "form-control" %>
+    <div class="space"></div>
+    <%= f.submit "Add", class: "btn btn-success btn-xs" %>
     <% end %>
+</div>

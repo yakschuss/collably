@@ -107,4 +107,30 @@ RSpec.describe EventsController, type: :controller do
         end
       end
     end
+
+    context "Admin creating and deleting conversations from the event" do
+      before do
+        my_event.update_user_role(my_event.users.first.id)
+        admin = my_event.users.first
+        sign_in admin
+      end
+      describe 'POST send_message' do
+        subject {post :send_message, id: my_event.id, conversation: { recipients: my_event.users.map(&:id), subject: 'im adding params', body: 'im adding params'} }
+
+        it 'uses mailboxer to create a conversation between all the event users' do
+          expect {subject}.to change(my_event.conversations, :count).by(1)
+        end
+
+    end
+
+      describe 'POST delete_message' do
+        before do
+          post :send_message, id: my_event.id, conversation: { recipients: my_event.users.map(&:id), subject: 'im adding params', body: 'im adding params'}
+          request.env["HTTP_REFERER"] = event_path(my_event)
+        end
+        subject {post :delete_message, id: my_event.conversations.first.id}
+
+
+      end
+    end
 end

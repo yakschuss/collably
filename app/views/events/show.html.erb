@@ -1,55 +1,29 @@
-<div class="col-md-8">
-  <h1>
-    <%= @event.title %><br>
-    <small>
-      submitted <%= time_ago_in_words(@event.created_at) %> ago by <%= @event.users.first.first_name %>
-    </small>
-  </h1>
-</div>
+<div class="container">
+  <div class="row spacer">
 
-<br>
-<div class="media">
-  <div class="media-body">
-    <div class="col-md-12">
-      <h3>Admins</h3>
-          <% @admins.each do |user| %>
-            <%= render partial: "users/user", locals: {user: user} %>
-          <% end %>
+    <div class="col-lg-2 col-md-2 col-sm-1">
+      <%= render partial: 'member' %>
+    </div>
+    <div class="col-lg-10 col-md-4 to-the-right">
+      <h1>
+        <%= @event.title %><br>
+        <small>
+          submitted <%= time_ago_in_words(@event.created_at) %> ago by <%= @event.users.first.first_name %>
+        </small>
+      </h1>
     </div>
   </div>
-<div class="media-body">
-  <div class="col-md-12">
-    <h3>Members</h3>
-        <% @members.each do |user| %>
-          <%= render partial: "users/user", locals: {user: user} %>
-        <% end %>
-  </div>
-</div>
-<div class="media-body">
-  <div class="col-md-12">
-    <h3>Invited</h3>
-        <% @invited.each do |user| %>
-          <%= render partial: "users/user", locals: {user: user} %>
-        <% end %>
-  </div>
-</div>
-</div>
-<div class="form-group">
-  <div class="form">
-    <div class="col-md-4">
-      <% if current_user.event_role(@event.id) == "admin" %>
-      <%= render partial: "users/form", locals: {event: @event} %>
+
+
+  <div class="row">
+    <div class="col-lg-4 col-md-2">
+      <%= render partial: "buttons" %>
+    </div>
+    <div class="col-lg-8 col-md-4">
+      <% @event.all_conversations(@event).each do |conversation| %>
+      <%= render partial: "events/conversation" , locals: {event: @event, conversation: conversation} %>
       <% end %>
     </div>
   </div>
-</div>
-<div class="new-todo">
-    <%= render partial: "todos/form", locals: {event: @event, todo: Todo.new} %>
-</div>
-<div class="media js-todos">
-  <ul class="list-group">
-    <% @event.todos.each do |todo| %>
-    <%= render partial: 'todos/todo', locals: {event: @event, todo: todo} %>
-    <% end %>
-  </ul>
+
 </div>

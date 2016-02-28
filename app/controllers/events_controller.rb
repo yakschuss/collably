@@ -1,7 +1,8 @@
 class EventsController < ApplicationController
 
   before_action :authenticate_user!, only: [:new, :create, :show]
-  before_action :authorize_user, only: [:update_user, :invite_user]
+  before_action :authorize_user, only: [:update_user, :invite_user, :send_message]
+  before_action :authorize_user_conversation, only: [:delete_message]
   after_action :assign_owner, only: [:create]
 
   def new
@@ -33,7 +34,7 @@ class EventsController < ApplicationController
   def invite_user
     @event = Event.find(params[:id])
 
-
+# TODO
   #Need to validate uniqueness of user-event before running invite_the_user - right now, event_user_role - validate uniqueness of user_id throws a "That person isn't in the app error!"
   #would refactor if statement
     if @event.invite_the_user(params[:users][:email], @event)
@@ -62,11 +63,35 @@ class EventsController < ApplicationController
 
   end
 
+  def send_message
+    @event = Event.find(params[:id])
+    recipients = User.where(id: conversation_params[:recipients])
+    body = conversation_params[:body]
+    subject = conversation_params[:subject]
+    if EventUserConversation.send_message(@event, current_user, recipients, body, subject)
+      flash[:notice] = "Your message was posted successfully"
+      redirect_to @event
+    else
+      flash.now[:error] = "There was a problem. Try again?"
+      render :send_message
+    end
+  end
+
+  def delete_message
+      conversation.participants.each do |participant|
+        conversation.mark_as_deleted(participant)
+      end
+    redirect_to :back
+  end
 
     private
 
       def event_params
         params.require(:event).permit(:title)
+      end
+
+      def conversation_params
+        params.require(:conversation).permit(:subject, :body, recipients: [])
       end
 
       def assign_owner
@@ -80,10 +105,17 @@ class EventsController < ApplicationController
 
       def authorize_user
         @event = Event.find(params[:id])
-        @admins = @event.all_user_roles(@event.id, "1")
-        unless @admins.find { | user | user.id == current_user.id }
-          flash[:error] = "You must be an admin to do that."
-          redirect_to @event
-        end
+          unless @event.admin?(current_user)
+            flash[:error] = "You must be an admin to do that."
+            redirect_to @event
+          end
+      end
+
+      def authorize_user_conversation
+        @event = Event.find(params[:event_id])
+          unless @event.admin?(current_user)
+            flash[:error] = "You must be an admin to do that."
+            redirect_to @event
+          end
       end
 end

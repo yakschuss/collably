@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
 
     has_many :roles, class_name: "EventUserRole"
     has_many :events, through: :roles
+    has_many :conversations, class_name: "EventUserConversation"
 
     acts_as_messageable
 
@@ -37,11 +38,11 @@ class User < ActiveRecord::Base
     end
 
     def accepted_events
-      events.includes(:roles).where("event_user_roles.status = ?", EventUserRole::ACCEPTED_STATUS)
+      events.where("event_user_roles.status = ?", EventUserRole::ACCEPTED_STATUS)
     end
 
     def pending_events
-      events.includes(:roles).where("event_user_roles.status = ?", EventUserRole::PENDING_STATUS)
+      events.where("event_user_roles.status = ?", EventUserRole::PENDING_STATUS)
     end
 
     def mailboxer_name
