@@ -18,7 +18,9 @@
               <a class="btn btn-primary btn-xs" role="button" data-toggle="collapse" href="#collapseReply<%="#{conversation.id}"%>">
                 Reply
               </a>
+              <% if event.admin?(current_user) %>
             <%= link_to "Delete", delete_message_conversation_path({id: conversation.id, event_id: event.id}), class: "btn btn-danger btn-xs", method: :post, data: { confirm: "Are you sure?"} %>
+            <% end %>
             <div id="collapseReply<%="#{conversation.id}"%>" class="collapse">
                 <div class="space"></div>
               <%= form_for :message, class: "form-group", url: reply_conversation_path(conversation) do |f| %>

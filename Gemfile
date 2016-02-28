@@ -61,6 +61,11 @@ group :development do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  #check for n+1 queries
+  gem 'bullet'
+  gem 'uniform_notifier'
+  gem 'ruby-growl'
+  gem 'ruby_gntp'
 end
 
 group :production do
