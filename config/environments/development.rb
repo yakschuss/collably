@@ -50,4 +50,11 @@ Rails.application.configure do
     :port => '2525',
     :authentication => :cram_md5
   }
+
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.alert = true
+    Bullet.bullet_logger = true
+
+  end
 end

@@ -38,11 +38,11 @@ class User < ActiveRecord::Base
     end
 
     def accepted_events
-      events.includes(:roles).where("event_user_roles.status = ?", EventUserRole::ACCEPTED_STATUS)
+      events.where("event_user_roles.status = ?", EventUserRole::ACCEPTED_STATUS)
     end
 
     def pending_events
-      events.includes(:roles).where("event_user_roles.status = ?", EventUserRole::PENDING_STATUS)
+      events.where("event_user_roles.status = ?", EventUserRole::PENDING_STATUS)
     end
 
     def mailboxer_name
