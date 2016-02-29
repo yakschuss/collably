@@ -3,8 +3,8 @@
       <%= link_to event.title, event_path(event.id) %>
     <% elsif @user.event_status(event.id) == "pending" && @user == current_user %>
       <%= "#{event.title}" %>
-      <%= link_to "Accept", accept_invite_user_path(event.id), class: "user-links" %> |
-      <%= link_to "Decline", decline_invite_user_path(event.id), class: "user-links"%>
+      <%= link_to "Accept", accept_invite_user_path(event.id), class: "accept-decline" %> |
+      <%= link_to "Decline", decline_invite_user_path(event.id), class: "accept-decline"%>
     <% else %>
       <%= "#{event.title}" %>
     <% end %>

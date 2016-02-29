@@ -19,9 +19,21 @@ body {
   padding-right: 65px;
 }
 
+h1 {
+  font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;
+  font-weight: 400;
+}
 
 .event-form {
   padding-top: 25px;
   float:right;
   width:auto;
+}
+
+.spacer-xl {
+    margin-top: 60px;
+}
+
+.accept-decline{
+  color: #18BC9C;
 }
