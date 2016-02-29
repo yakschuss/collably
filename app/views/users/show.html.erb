@@ -1,7 +1,7 @@
 <div class="container col-lg-12 col-xs-2">
   <div class="row row-same-height">
     <div class="col-lg-4">
-      <h1><%= @user.first_name %> <small>- <%= @user.email %></small></h1>
+      <h1><%= @user.full_name %> <small> <%= @user.email %></small></h1>
     </div>
     <div class="col-lg-4 pull-right event-form">
         <%= link_to "New Event", new_event_path, class: "btn btn-success" %>
@@ -10,20 +10,21 @@
 </div>
 
 
-<br>
-<br>
+<div class="spacer-xl"></div>
 
   <div class="row">
-    <div class="col-md-6">
+    <ul class="list-group">
+    <div class="col-md-8">
       <% @user.accepted_events.each do |event| %>
-        <%= render partial: "events/event", locals: {event: event} %>
+        <li class="list-group-item"><%= render partial: "events/event", locals: {event: event} %></li>
       <% end %>
     </div>
   </div>
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-8">
       <% @user.pending_events.each do |event| %>
-        <%= render partial: "events/event", locals: {event: event} %>
+        <li class="list-group-item active"><%= render partial: "events/event", locals: {event: event} %></li>
       <% end %>
     </div>
+    </ul>
   </div>

@@ -12,7 +12,7 @@
 @import "users";
 @import "welcome";
 @import "navbar";
-
+@import "devise";
 .user-info {
     margin-top: 9px;
 }
@@ -23,7 +23,9 @@
 
 body {
     padding-top: 65px;
+    padding-bottom: 85px;
     background-color: #B0C2D4;
+    height: 100%;
 }
 
 body h1 {
@@ -74,3 +76,40 @@ h1 small {
 h4 small {
   color: #545860;
 }
+
+#footer {
+
+  color: #fff;
+  background: #2c3e50;
+  .copyright {
+    margin-bottom: 0px;
+    margin-top:5px;
+    padding-bottom: 0;
+  }
+  .social-media {
+  padding: 0;
+  margin: 0;
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+    a {
+      font-size: 16px;
+      display: table;
+      width: 40px;
+      height: 40px;
+      margin: 0 4px;
+
+      i {
+        display: table-cell;
+        vertical-align: middle;
+        font-size: 2em;
+            }
+          }
+        }
+      }
+    }

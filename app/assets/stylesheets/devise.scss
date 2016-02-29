@@ -1,0 +1,32 @@
+.name-field{
+  display: inline-block;
+}
+.name-field-left{
+  float: left;
+  display: inline-block;
+}
+.name-field-right{
+  float: right;
+  display: inline-block;
+}
+.form-group-devise{
+  float:center;
+  padding-left: 50%;
+}
+.center-actions{
+padding-left: 50%;
+padding-right: 50%;
+}
+
+.col-centered{
+    float:none;
+    margin: 0 auto;
+    vertical-align: middle;
+}
+
+h2 {
+  font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;
+}
+.form-control-devise{
+  width:auto;
+}

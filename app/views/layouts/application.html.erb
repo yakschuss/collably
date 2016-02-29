@@ -13,6 +13,9 @@
     <%= render 'shared/app_nav' unless @disable_nav %>
     <%= render 'shared/flash' unless @disable_nav %>
         <%= yield %>
+        <footer id="footer" class="navbar navbar-fixed-bottom">
+            <%= render partial: 'shared/footer' %>
+        </footer>
     </div>
   </body>
 </html>
