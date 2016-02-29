@@ -11,7 +11,9 @@
   <%= favicon_link_tag 'favicon.ico' %>
 </head>
   <body>
-    <%= render 'shared/app_nav' unless @disable_nav %>
+    <header id="header" class="navbar navbar-fixed-top">
+      <%= render 'shared/app_nav' unless @disable_nav %>
+    </header>
     <%= render 'shared/flash' unless @disable_nav %>
         <%= yield %>
         <footer id="footer" class="navbar navbar-fixed-bottom">
