@@ -67,7 +67,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     recipients = User.where(id: conversation_params[:recipients])
     body = conversation_params[:body]
-    subject = conversation_params[:subject]
+    subject = conversation_params[:subject] == "" ? "no subject" : conversation_params[:subject]
     if EventUserConversation.send_message(@event, current_user, recipients, body, subject)
       flash[:notice] = "Your message was posted successfully"
       redirect_to @event
