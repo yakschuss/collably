@@ -1,9 +1,9 @@
-<div class="container col-lg-12 col-xs-2">
+<div class="container">
   <div class="row row-same-height">
-    <div class="col-lg-4">
+    <div class="col-sm-2 col-md-4">
       <h1><%= @user.full_name %> <small> <%= @user.email %></small></h1>
     </div>
-    <div class="col-lg-4 pull-right event-form">
+    <div class="col-md-4 to-the-right event-form">
         <%= link_to "New Event", new_event_path, class: "btn btn-success" %>
     </div>
   </div>

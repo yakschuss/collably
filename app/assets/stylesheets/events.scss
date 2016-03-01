@@ -36,10 +36,13 @@
 .conversation-links-danger:hover{
     color: red;
 }
-.to-the-right{
-    padding-left: 50%;
-}
+
 
 .width-define-collapse-reply{
     width:10%;
+}
+@media (min-width: $screen-md-min){
+.to-the-right{
+    padding-left: 50%;
+    }
 }
