@@ -10,9 +10,10 @@ gem 'mailboxer'
 gem 'chosen-rails'
 #store ENV variables
 gem 'figaro', '1.0'
-# Use SCSS for stylesheets
 
-#assets
+gem 'omniauth'
+gem 'omniauth-facebook'
+#assets - # Use SCSS for stylesheets
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'sass-rails', '>= 3.2'
 

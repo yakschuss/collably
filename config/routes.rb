@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
 
-  devise_for :users, controllers: {registrations: 'registrations'}
+  devise_for :users, controllers: {registrations: 'registrations', omniauth_callbacks: "callbacks"}
   resources :events do
     resources :todos, only: [:create, :destroy]
     member do
