@@ -10,18 +10,17 @@
           <%= render partial: "events/send_message", locals: {event: @event} %>
           <div class="space"></div>
       </div>
-
     </div>
 
 
-
-<div class="btn-group btn-group-justified">
       <div>
+          <h4>
             <a class="btn btn-default" role="" data-toggle="collapse" href="#collapseTodos">
               Todos
             </a>
+          </h4>
         <div id="collapseTodos" class="collapse">
-          <div class="js-todos pull-left">
+          <div class="js-todos">
             <ul class="list-group">
             </br>
               <% @event.todos.each do |todo| %>
@@ -31,16 +30,18 @@
             </div>
           </div>
        </div>
+
+
         <div>
           <h4>
               <a class="btn btn-default" role="button" data-toggle="collapse" href="#collapseNewTask">
                 New Todo
               </a>
             </h4>
-          <div id="collapseNewTask" class="collapse">
-            <%= render partial: "todos/form", locals: {event: @event, todo: Todo.new} %>
-          </div>
+            <div id="collapseNewTask" class="collapse">
+              <%= render partial: "todos/form", locals: {event: @event, todo: Todo.new} %>
+            </div>
         </div>
-     </div>
+
 
 </div>
