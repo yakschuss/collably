@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
     has_many :conversations, class_name: "EventUserConversation"
 
     acts_as_messageable
-
+    TEMP_EMAIL_PREFIX = ''
 
     def event_role(event_id)
       query = EventUserRole.where(event_id: event_id, user_id: self.id).take
@@ -68,9 +68,10 @@ class User < ActiveRecord::Base
 
     def self.from_omniauth(auth)
         where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+
           user.provider = auth.provider
           user.uid = auth.uid
-          user.email = auth.info.email
+          user.email = auth.info.email ? auth.info.email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com"
           user.first_name = auth.info.first_name
           user.last_name = auth.info.last_name
           user.password = Devise.friendly_token[0,20]
