@@ -39,9 +39,9 @@ RSpec.describe Event, type: :model do
     end
 
 
-      describe "event#all_messages"  do
+      describe "event#all_conversations"  do
         it "returns all conversations associated with the event" do
-          result = event.all_messages(event)
+          result = event.all_conversations(event)
           expect(result).to eq(event.conversations)
         end
       end
