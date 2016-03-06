@@ -19,11 +19,11 @@
                     <li>
                         <%= link_to "#{current_user.first_name}'s Dashboard", user_path(current_user) %>
                     </li>
-                <% else %>
+                        <% else %>
                     <li>
                       <%= link_to "Dashboard", user_path(current_user), class: 'navbar-link' %>
                     </li>
-                <% end %>
+                        <% end %>
                 <li>
                     <a class="page-scroll" href="#contact">Contact</a>
                 </li>
