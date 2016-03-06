@@ -39,7 +39,7 @@ class EventsController < ApplicationController
   #would refactor if statement
     if @event.invite_the_user(params[:users][:email], @event)
       flash[:notice] = "Pending Invitation - waiting for user to accept."
-      redirect_to @event
+      redirect_to @event #TODO{missing_user_email params[:users][:email]}
     else
       flash[:error] = "That person isn't in the app! Now's your chance to invite them!"
       render file: "devise/invitations/new"
