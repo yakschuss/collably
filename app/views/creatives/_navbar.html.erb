@@ -14,17 +14,23 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                    <% if current_user %>
-                <li>
-                    <%= link_to "#{current_user.first_name}'s Dashboard", user_path(current_user) %>
-                </li>
+            <% if current_user %>
+                        <% if current_user.first_name != "" %>
+                    <li>
+                        <%= link_to "#{current_user.first_name}'s Dashboard", user_path(current_user) %>
+                    </li>
+                <% else %>
+                    <li>
+                      <%= link_to "Dashboard", user_path(current_user), class: 'navbar-link' %>
+                    </li>
+                <% end %>
                 <li>
                     <a class="page-scroll" href="#contact">Contact</a>
                 </li>
                 <li>
                     <%= link_to "Logout", destroy_user_session_path, method: :delete %>
                 </li>
-                    <% else %>
+            <% else %>
                 <li>
                     <a class="page-scroll" href="#about">About</a>
                 </li>
@@ -37,7 +43,7 @@
                 <li>
                     <a class="page-scroll" href="#contact">Contact</a>
                 </li>
-                    <% end %>
+            <% end %>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
